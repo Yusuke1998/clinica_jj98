@@ -17,4 +17,8 @@ class casefile extends Model
     public function receptionist(){
         return $this->belongsTo('App\receptionist');
     }
+
+    public function evolutions(){
+        return $this->hasMany('App\evolution');
+    }
 }
