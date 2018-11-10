@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Adress;
+// use App\User;
+
 
 class users extends Controller
 {
@@ -13,7 +17,8 @@ class users extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = User::all();
+        return view('sistema/usuario/index')->with('usuarios',$usuarios);
     }
 
     /**
@@ -26,15 +31,18 @@ class users extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $user = new User;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->rol = $request->rol;
+        $user->password = Hash::make($request->password);
+        
+        ($user->save())?'':'Error al guardar';
+
+        return back();
     }
 
     /**
