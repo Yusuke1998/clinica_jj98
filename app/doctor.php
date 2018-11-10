@@ -30,5 +30,12 @@ class doctor extends Model
         return $this->belongsToMany('App\patient');
     }
 
+    public function consultingroom(){
+        return $this->belongsTo('App\consultingroom');
+    }
+
+    /*public function query(){
+        return $this->belongsTo('App\query','doctor_id','id');
+    }*/
 
 }
