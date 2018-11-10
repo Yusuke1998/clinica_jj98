@@ -30,7 +30,7 @@ class patient extends Model
         return $this->belongsToMany('App\doctor');
     }
 
-    /*public function query(){
-        return $this->belongsTo('App\query','patient_id','id');
-    }*/
+    public function query(){
+        return $this->belongsTo('App\query');
+    }
 }

@@ -18,9 +18,6 @@ class CreateSpecialtiesTable extends Migration
             $table->string('name')->unique();
             $table->string('details');
             $table->timestamps();
-
-            $table->integer('doctor_id')->unsigned();
-            $table->foreign('doctor_id')->references('id')->on('doctors');
         });
     }
 

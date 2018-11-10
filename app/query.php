@@ -9,7 +9,7 @@ class query extends Model
     protected $fillable = [
         'date', 'location', 'doctor_id', 'patient_id'
     ];
-/*
+
     public function patient(){
     	return $this->hasMany('App\patient');
     }
@@ -18,5 +18,5 @@ class query extends Model
     	return $this->hasMany('App\doctor');
     }
 
-*/
+
 }

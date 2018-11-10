@@ -68,19 +68,14 @@ class users extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::find($id);
+        return "Tu id es: ".$id;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = User::find($id);
+        return "Tu eres: ".$usuario->username;
     }
 
     /**
@@ -91,6 +86,9 @@ class users extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = User::find($id);
+        $usuario->delete();
+
+        return "Tu id es: ".$id;
     }
 }
