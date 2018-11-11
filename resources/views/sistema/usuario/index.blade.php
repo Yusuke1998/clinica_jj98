@@ -36,5 +36,12 @@
 		</tbody>
 	</table>
 </div>
+<div class="col-md-4">
+	<div id="app"> 
+       <h1> Nombres </h1>
+       @{{ $data | json }}
+       @{{ $info }} 
 
+    </div>
+</div>
 @endsection
