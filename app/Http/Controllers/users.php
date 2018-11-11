@@ -4,91 +4,57 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-// use App\Adress;
-// use App\Email;
-// use App\Telephone;
-
-
-// use App\User;
-
 
 class users extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $usuarios = User::all();
         return view('sistema/usuario/index')->with('usuarios',$usuarios);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $user = new User;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->rol = $request->rol;
-        $user->password = Hash::make($request->password);
+        $user->password = bcrypt($request->password);
         
-        ($user->save())?'':'Error al guardar';
+        $user->save();
 
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $usuario = User::find($id);
-        return "Tu id es: ".$id;
+        $editaru = User::find($id);
+        $usuarios = User::all();
+        return view('sistema/usuario/edit')
+        ->with('editaru',$editaru)
+        ->with('usuarios',$usuarios);
+
     }
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $usuario = User::find($id);
-        return "Tu eres: ".$usuario->username;
+        $usuario->username = $request->username;
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+        $usuario->rol = $request->rol;
+        $usuario->update();
+
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $usuario = User::find($id);
         $usuario->delete();
 
-        return "Tu id es: ".$id;
+        return back();
     }
 }

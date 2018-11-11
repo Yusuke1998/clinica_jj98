@@ -1,14 +1,10 @@
-<script src="{{asset('js/app.js')}}"></script>
+{{-- <script src="{{asset('js/app.js')}}"></script> --}}
 
-{{-- <script src="{{asset('DataTables/jquery/jquery-3.3.1.js')}}"></script>
+<script src="{{asset('DataTables/jquery/jquery-3.3.1.js')}}"></script>
 
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
-<script src="{{asset('js/vue.js')}}"></script>
-
-<script src="{{asset('js/axios.js')}}"></script>
-
-<script type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"></script> --}}
+<script type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"></script>
 
 <!-- DATA TABLES -->
 <script>
@@ -35,24 +31,3 @@
 	});
 </script>
 <!-- DATA TABLES -->
-<script>
-	var url = 'vue-prueba-datos';
-	var info;
-
-	new Vue({
-	  el: '#app',
-	  created: function(){
-	  	this.getNombres();
-	  },
-	  data: {
-	    info:[]
-	  },
-	  methods: {
-	    getNombres: function(){
-	    	axios.get(url).then(response => {
-	    		this.info = response.data
-	    	});
-	    }
-	  }
-	});
-</script>

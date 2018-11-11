@@ -20,11 +20,11 @@
             @csrf
 		      <div class="modal-body">
 		      	<div class="form-group">
-		      		<label for="username">Nombre de Usuario</label>
+		      		<label for="username">Nombres</label>
 		      		<input id="username" class="form-control" type="text" name="username">
 		      	</div>
 		      	<div class="form-group">
-		      		<label for="password">Contraseña de Usuario</label>
+		      		<label for="password">Apellidos</label>
 		      		<input id="password" class="form-control" type="password" name="password">
 		      	</div>
 		      	<div class="form-group">
@@ -51,7 +51,7 @@
 	</div>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-8">
 	<table id="example" class="display" style="width:100%">
 		<thead>
 			<tr>
@@ -71,8 +71,9 @@
 					<td>{{($usuario->created_at)?$usuario->created_at->diffForHumans():'No hay registro...'}}</td>
 					<td>
 					<div class="btn-group">
+							
 						<a class="btn btn-primary btn-sm" href="{{route('usuarios.edit',$usuario->id)}}">Editar</a>
-						
+
 						<form action="{{route('usuarios.destroy',$usuario->id)}}" method="post">
 							@csrf
 							<input type="hidden" name="_method" value="DELETE">
@@ -84,5 +85,51 @@
 			@endforeach
 		</tbody>
 	</table>
+</div>
+<div class="col-md-4">
+    @if($editaru)
+	<form action="{{route('usuarios.update',$editaru->id)}}" method="POST">
+    @csrf
+      <input type="hidden" name="_method" value="PUT">
+      <div class="modal-body">
+      	<div class="form-group">
+      		<label>Nombre de Usuario</label>
+      		<input value="{{$editaru->username}}" class="form-control" type="text" name="username" value="{{$usuario->username}}">
+      	</div>
+      	<div class="form-group">
+      		<label>Contraseña de Usuario</label>
+      		<input class="form-control" type="password" name="password" placeholder="Ingresa una nueva contraseña">
+      	</div>
+      	<div class="form-group">
+      		<label>Correo Electronico</label>
+      		<input value="{{$editaru->email}}" name="email" class="form-control" type="email" value="{{$usuario->email}}">
+      	</div>
+      	<div class="form-group">
+      		<label>Tipo de usuario</label>
+      		<select class="form-control" name="rol">
+      			@if($editaru->rol=="receptionist")
+      			     <option value="receptionist" selected>Recepcionista</option>
+      			     <option value="doctor">Medico</option>
+
+      			     <option value="admin">Administrador</option>
+      			@endif
+      			@if($editaru->rol=="doctor")
+      			     <option value="receptionist">Recepcionista</option>
+      			     <option value="doctor">Medico</option>
+      			     <option value="admin" selected>Administrador</option>
+      			@endif
+      			@if($editaru->rol=="admin")
+      			     <option value="receptionist">Recepcionista</option>
+      			     <option value="doctor">Medico</option>
+      			     <option value="admin" selected>Administrador</option>
+      			@endif
+      		</select>
+            <button type="submit" class="form-control btn btn-primary">Actualizar</button>
+      	</div>
+      </div>
+    </form>
+	@else
+	       {!! redirect(route('usuarios.index')) !!}
+	@endif
 </div>
 @endsection

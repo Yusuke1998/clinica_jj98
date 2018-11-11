@@ -36,7 +36,3 @@ Route::group(['prefix'	=>  'sistema'],function(){
 	Route::resource('/telefonos','phones');
 	Route::resource('/usuarios','users');
 });
-
-Route::get('vue-prueba-datos',function(){
-	return ['lol','soy geordy','lolalolita','soy garen'];
-})->name('vue');

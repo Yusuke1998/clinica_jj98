@@ -1,5 +1,5 @@
 @extends('templates.dashboard-layout')
-@section('title') Usuario @endsection
+@section('title') Recepcionista @endsection
 @section('content')
 <div class="col-md-12">
 	<!-- Button trigger modal -->
@@ -16,9 +16,57 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-            <form action="{{route('usuarios.store')}}" method="POST">
+            <form action="{{route('recepcionistas.store')}}" method="POST">
             @csrf
 		      <div class="modal-body">
+		      	<div class="form-group">
+		      		<label for="firstname">Nombres</label>
+		      		<input id="firstname" class="form-control" type="text" name="firstname">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="lastname">Apellidos</label>
+		      		<input id="lastname" class="form-control" type="text" name="lastname">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="ci">Cedula</label>
+		      		<input name="ci" id="ci" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="telephones1">Telefono(1)</label>
+		      		<select name="typeT1">
+		      			<option value="casa">casa</option>
+		      			<option value="oficina">oficina</option>
+		      			<option value="movil">movil</option>
+		      		</select>
+		      		<input name="telephones1" id="telephones1" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="telephones2">Telefono(2)</label>
+		      		<select name="typeT2">
+		      			<option value="casa">casa</option>
+		      			<option value="oficina">oficina</option>
+		      			<option value="movil">movil</option>
+		      		</select>
+		      		<input placeholder="(Opcional)" name="telephones2" id="telephones2" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="address1">Direccion(1)</label>
+		      		<select name="typeA1">
+		      			<option value="Casa">Casa</option>
+		      			<option value="Trabajo">Trabajo</option>
+		      			<option value="Residencia">Residencia</option>
+		      		</select>
+		      		<input id="address1" class="form-control" type="text" name="address1">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="address2">Direccion(2)</label>
+		      		<select name="typeA2">
+		      			<option value="Casa">Casa</option>
+		      			<option value="Trabajo">Trabajo</option>
+		      			<option value="Residencia">Residencia</option>
+		      		</select>
+		      		<input placeholder="(Opcional)" id="address2" class="form-control" type="text" name="address2">
+		      	</div>
 		      	<div class="form-group">
 		      		<label for="username">Nombre de Usuario</label>
 		      		<input id="username" class="form-control" type="text" name="username">
@@ -28,18 +76,9 @@
 		      		<input id="password" class="form-control" type="password" name="password">
 		      	</div>
 		      	<div class="form-group">
-		      		<label for="email">Correo Electronico</label>
+		      		<label for="email">Correo Electronico de Usuario</label>
 		      		<input name="email" id="email" class="form-control" type="email">
 		      	</div>
-		      	<div class="form-group">
-		      		<label for="rol">Tipo de usuario</label>
-		      		<select class="form-control" id="rol" name="rol">
-		      			<option value="receptionist">Recepcionista</option>
-		      			<option value="doctor">Medico</option>
-		      			<option value="admin">Administrador</option>
-		      		</select>
-		      	</div>
-
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
