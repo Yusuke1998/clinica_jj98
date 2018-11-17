@@ -15,18 +15,13 @@ class receptionists extends Controller
     public function index()
     {
         $recepcionistas = receptionist::all();
-        return view('sistema/recepcionista/index')->with('recepcionistas',$recepcionistas);
+
+        return view('sistema/recepcionista/index')
+        ->with('recepcionistas',$recepcionistas);
     }
 
     public function store(Request $request)
     {
-        // dd($request);
-        // $recepcionista = new receptionist;
-        // $recepcionista->firstname = $request->firstname;
-        // $recepcionista->lastname = $request->lastname;
-        // $recepcionista->ci = $request->ci;
-        // $recepcionista->save();
-
         $recepcionista = receptionist::create([
         'firstname' => $request->firstname,
         'lastname' => $request->lastname,
@@ -38,11 +33,11 @@ class receptionists extends Controller
         'username' => $request->username,
         'email' => $request->email,
         'rol' => 'receptionist',
-        'password' => bcrypt($request->password)
+        'password' => bcrypt($request->password),
+        'user_id' =>  Auth::id()
         ]);
 
         $getIdu = $usuario->id;
-        // dd($getId);
 
         $telefono = new telephone;
         $telefono->type = $request->typeT1;
@@ -78,13 +73,12 @@ class receptionists extends Controller
     public function edit($id)
     {
         $editarr = receptionist::find($id);
-        
+        // $telefonos = receptionist::find($id)->telephones;
         $recepcionistas = receptionist::all();
 
         return view('sistema/recepcionista/edit')
         ->with('editarr',$editarr)
         ->with('recepcionistas',$recepcionistas);
-
     }
 
     public function update(Request $request, $id)
@@ -95,6 +89,7 @@ class receptionists extends Controller
         $usuario->email = $request->email;
         $usuario->password = $request->password;
         $usuario->rol = $request->rol;
+        $usuario->user_id = Auth::id();
         $usuario->update();
 
         return back();

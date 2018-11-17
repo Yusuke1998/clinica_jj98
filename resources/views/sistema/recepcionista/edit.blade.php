@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-12">
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal"> @yield('btn-modal','Nuevo')
+	<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal"> @yield('btn-modal','Nuevo')
 	</button>
 
 	<!-- Modal -->
@@ -16,30 +16,69 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-            <form action="{{route('usuarios.store')}}" method="POST">
+            <form action="{{route('recepcionistas.store')}}" method="POST">
             @csrf
 		      <div class="modal-body">
 		      	<div class="form-group">
-		      		<label for="username">Nombres</label>
+		      		<label for="firstname">Nombres</label>
+		      		<input id="firstname" class="form-control" type="text" name="firstname">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="lastname">Apellidos</label>
+		      		<input id="lastname" class="form-control" type="text" name="lastname">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="ci">Cedula</label>
+		      		<input name="ci" id="ci" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="telephones1">Telefono(1)</label>
+		      		<select name="typeT1">
+		      			<option value="casa">casa</option>
+		      			<option value="oficina">oficina</option>
+		      			<option value="movil">movil</option>
+		      		</select>
+		      		<input name="telephones1" id="telephones1" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="telephones2">Telefono(2)</label>
+		      		<select name="typeT2">
+		      			<option value="casa">casa</option>
+		      			<option value="oficina">oficina</option>
+		      			<option value="movil">movil</option>
+		      		</select>
+		      		<input placeholder="(Opcional)" name="telephones2" id="telephones2" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="address1">Direccion(1)</label>
+		      		<select name="typeA1">
+		      			<option value="Casa">Casa</option>
+		      			<option value="Trabajo">Trabajo</option>
+		      			<option value="Residencia">Residencia</option>
+		      		</select>
+		      		<input id="address1" class="form-control" type="text" name="address1">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="address2">Direccion(2)</label>
+		      		<select name="typeA2">
+		      			<option value="Casa">Casa</option>
+		      			<option value="Trabajo">Trabajo</option>
+		      			<option value="Residencia">Residencia</option>
+		      		</select>
+		      		<input placeholder="(Opcional)" id="address2" class="form-control" type="text" name="address2">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="username">Nombre de Usuario</label>
 		      		<input id="username" class="form-control" type="text" name="username">
 		      	</div>
 		      	<div class="form-group">
-		      		<label for="password">Apellidos</label>
+		      		<label for="password">Contraseña de Usuario</label>
 		      		<input id="password" class="form-control" type="password" name="password">
 		      	</div>
 		      	<div class="form-group">
-		      		<label for="email">Correo Electronico</label>
+		      		<label for="email">Correo Electronico de Usuario</label>
 		      		<input name="email" id="email" class="form-control" type="email">
 		      	</div>
-		      	<div class="form-group">
-		      		<label for="rol">Tipo de usuario</label>
-		      		<select class="form-control" id="rol" name="rol">
-		      			<option value="receptionist">Recepcionista</option>
-		      			<option value="doctor">Medico</option>
-		      			<option value="admin">Administrador</option>
-		      		</select>
-		      	</div>
-
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -51,30 +90,28 @@
 	</div>
 </div>
 
-<div class="col-md-8">
+<div class="col-md-6">
 	<table id="example" class="display" style="width:100%">
 		<thead>
 			<tr>
-				<th>Usuario</th>
-				<th>Correo Electronico</th>
-				<th>Rol</th>
-				<th>Creado</th>
+				<th>Nombres</th>
+				<th>Apellidos</th>
+				<th>Cedula</th>
 				<th>Accion</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($usuarios as $usuario)
+			@foreach($recepcionistas as $recepcionista)
 				<tr>
-					<td>{{$usuario->username}}</td>
-					<td>{{$usuario->email}}</td>
-					<td>{{$usuario->rol}}</td>
-					<td>{{($usuario->created_at)?$usuario->created_at->diffForHumans():'No hay registro...'}}</td>
+					<td>{{$recepcionista->firstname}}</td>
+					<td>{{$recepcionista->lastname}}</td>
+					<td>{{$recepcionista->ci}}</td>
 					<td>
 					<div class="btn-group">
 							
-						<a class="btn btn-primary btn-sm" href="{{route('usuarios.edit',$usuario->id)}}">Editar</a>
+						<a class="btn btn-primary btn-sm" href="{{route('recepcionistas.edit',$recepcionista->id)}}">Editar</a>
 
-						<form action="{{route('usuarios.destroy',$usuario->id)}}" method="post">
+						<form action="{{route('recepcionistas.destroy',$recepcionista->id)}}" method="post">
 							@csrf
 							<input type="hidden" name="_method" value="DELETE">
 							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-primary btn-sm" type="submit">Eliminar</button>
@@ -86,50 +123,71 @@
 		</tbody>
 	</table>
 </div>
-<div class="col-md-4">
-    @if($editaru)
-	<form action="{{route('usuarios.update',$editaru->id)}}" method="POST">
-    @csrf
-      <input type="hidden" name="_method" value="PUT">
-      <div class="modal-body">
-      	<div class="form-group">
-      		<label>Nombre de Usuario</label>
-      		<input value="{{$editaru->username}}" class="form-control" type="text" name="username" value="{{$usuario->username}}">
-      	</div>
-      	<div class="form-group">
-      		<label>Contraseña de Usuario</label>
-      		<input class="form-control" type="password" name="password" placeholder="Ingresa una nueva contraseña">
-      	</div>
-      	<div class="form-group">
-      		<label>Correo Electronico</label>
-      		<input value="{{$editaru->email}}" name="email" class="form-control" type="email" value="{{$usuario->email}}">
-      	</div>
-      	<div class="form-group">
-      		<label>Tipo de usuario</label>
-      		<select class="form-control" name="rol">
-      			@if($editaru->rol=="receptionist")
-      			     <option value="receptionist" selected>Recepcionista</option>
-      			     <option value="doctor">Medico</option>
 
-      			     <option value="admin">Administrador</option>
-      			@endif
-      			@if($editaru->rol=="doctor")
-      			     <option value="receptionist">Recepcionista</option>
-      			     <option value="doctor">Medico</option>
-      			     <option value="admin" selected>Administrador</option>
-      			@endif
-      			@if($editaru->rol=="admin")
-      			     <option value="receptionist">Recepcionista</option>
-      			     <option value="doctor">Medico</option>
-      			     <option value="admin" selected>Administrador</option>
-      			@endif
-      		</select>
-            <button type="submit" class="form-control btn btn-primary">Actualizar</button>
-      	</div>
-      </div>
+<div class="col-md-6">
+    @if($editarr)
+	<form action="{{route('recepcionistas.update',$editarr->id)}}" method="POST">
+      <input type="hidden" name="_method" value="PUT">
+            @csrf
+		      <div class="modal-body">
+		      	<div class="form-group">
+		      		<label for="firstname">Nombres</label>
+		      		<input id="firstname" value="{{$editarr->firstname}}" class="form-control" type="text" name="firstname">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="lastname">Apellidos</label>
+		      		<input id="lastname" value="{{$editarr->lastname}}" class="form-control" type="text" name="lastname">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="ci">Cedula</label>
+		      		<input name="ci" id="ci" value="{{$editarr->ci}}" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="telephones1">Telefono(1)</label>
+		      	@foreach($editarr->telephones as $number)
+		      		<select name="typeT1">
+		      			<option value="casa">casa</option>
+		      			<option value="oficina">oficina</option>
+		      			<option value="movil">movil</option>
+		      		</select>
+
+		      		<input name="telephones1" value="{{$number->number}}" id="telephones1" class="form-control" type="text">
+
+		      	@endforeach
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="telephones2">Telefono(2)</label>
+		      		<select name="typeT2">
+		      			<option value="casa">casa</option>
+		      			<option value="oficina">oficina</option>
+		      			<option value="movil">movil</option>
+		      		</select>
+		      		<input placeholder="(Opcional)" name="telephones2" id="telephones2" class="form-control" type="text">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="address1">Direccion(1)</label>
+		      		<select name="typeA1">
+		      			<option value="Casa">Casa</option>
+		      			<option value="Trabajo">Trabajo</option>
+		      			<option value="Residencia">Residencia</option>
+		      		</select>
+		      		<input id="address1" class="form-control" type="text" name="address1">
+		      	</div>
+		      	<div class="form-group">
+		      		<label for="address2">Direccion(2)</label>
+		      		<select name="typeA2">
+		      			<option value="Casa">Casa</option>
+		      			<option value="Trabajo">Trabajo</option>
+		      			<option value="Residencia">Residencia</option>
+		      		</select>
+		      		<input placeholder="(Opcional)" id="address2" class="form-control" type="text" name="address2">
+		      	</div>
+		        <button type="submit" class=" form-control btn btn-primary">Actualizar</button>
+		      </div>
+            </form>
     </form>
 	@else
-	       {!! redirect(route('usuarios.index')) !!}
+	       {!! redirect(route('recepcionistas.index')) !!}
 	@endif
 </div>
 @endsection

@@ -12,14 +12,14 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Nombre de Usuario') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="username" type="username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('username'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -34,6 +34,24 @@
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="rol" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
+
+                            <div class="col-md-6">
+
+                                <select id="rol" class="form-control{{ $errors->has('rol') ? ' is-invalid' : '' }}" name="rol">
+                                    <option value="admin">Administrador</option>
+                                    <option value="doctor">Medico</option>
+                                    <option value="receptionist">Recepcionista</option>
+                                </select>
+                                @if ($errors->has('rol'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('rol') }}</strong>
                                     </span>
                                 @endif
                             </div>

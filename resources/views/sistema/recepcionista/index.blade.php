@@ -3,7 +3,7 @@
 @section('content')
 <div class="col-md-12">
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal"> @yield('btn-modal','Nuevo')
+	<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal"> @yield('btn-modal','Nuevo')
 	</button>
 
 	<!-- Modal -->
@@ -94,28 +94,29 @@
 	<table id="example" class="display" style="width:100%">
 		<thead>
 			<tr>
-				<th>Usuario</th>
-				<th>Correo Electronico</th>
-				<th>Rol</th>
+				<th>Nombres</th>
+				<th>Apellidos</th>
+				<th>Cedula</th>
 				<th>Creado</th>
 				<th>Accion</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($usuarios as $usuario)
+			@foreach($recepcionistas as $recepcionista)
 				<tr>
-					<td>{{$usuario->username}}</td>
-					<td>{{$usuario->email}}</td>
-					<td>{{$usuario->rol}}</td>
-					<td>{{($usuario->created_at)?$usuario->created_at->diffForHumans():'No hay registro...'}}</td>
+					<td>{{$recepcionista->firstname}}</td>
+					<td>{{$recepcionista->lastname}}</td>
+					<td>{{$recepcionista->ci}}</td>
+					<td>{{($recepcionista->created_at)?$recepcionista->created_at->diffForHumans():'No hay registro...'}}</td>
 					<td>
 					<div class="btn-group">
-						<a class="btn btn-primary btn-sm" href="{{route('usuarios.edit',$usuario->id)}}">Editar</a>
+						<a class="btn btn-warning btn-sm" href="{{route('recepcionistas.show',$recepcionista->id)}}">Ver</a>
+						<a class="btn btn-success btn-sm" href="{{route('recepcionistas.edit',$recepcionista->id)}}">Editar</a>
 						
-						<form action="{{route('usuarios.destroy',$usuario->id)}}" method="post">
+						<form action="{{route('recepcionistas.destroy',$recepcionista->id)}}" method="post">
 							@csrf
 							<input type="hidden" name="_method" value="DELETE">
-							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-primary btn-sm" type="submit">Eliminar</button>
+							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
 						</form>
 					</div>
 					</td>
