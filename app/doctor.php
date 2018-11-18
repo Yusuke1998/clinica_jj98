@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class doctor extends Model
 {
     protected $fillable = [
-        'firstname', 'lastname', 'ci'
+        'firstname', 'lastname', 'ci', 'user_id',
     ];
 
     public function telephones(){
@@ -34,8 +34,12 @@ class doctor extends Model
         return $this->belongsTo('App\consultingroom');
     }
 
-    public function query(){
+    public function aquery(){
         return $this->belongsTo('App\query');
+    }
+
+    public function user(){
+        return $this->hasOne('App\User');
     }
 
 }

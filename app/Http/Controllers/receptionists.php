@@ -22,22 +22,21 @@ class receptionists extends Controller
 
     public function store(Request $request)
     {
-        $recepcionista = receptionist::create([
-        'firstname' => $request->firstname,
-        'lastname' => $request->lastname,
-        'ci' => $request->ci,
-        ]);
-        $getIdr = $recepcionista->id;
-
         $usuario = User::create([
         'username' => $request->username,
         'email' => $request->email,
         'rol' => 'receptionist',
         'password' => bcrypt($request->password),
-        'user_id' =>  Auth::id()
         ]);
-
         $getIdu = $usuario->id;
+
+        $recepcionista = receptionist::create([
+        'firstname' => $request->firstname,
+        'lastname' => $request->lastname,
+        'ci' => $request->ci,
+        'user_id' => $getIdu,
+        ]);
+        $getIdr = $recepcionista->id;
 
         $telefono = new telephone;
         $telefono->type = $request->typeT1;
@@ -66,7 +65,6 @@ class receptionists extends Controller
             $direccion->receptionist_id = $getIdr;
             $direccion->save();
         }
-
         return back();
     }
 
@@ -83,22 +81,63 @@ class receptionists extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request);
-        $usuario = receptionist::find($id);
-        $usuario->username = $request->username;
-        $usuario->email = $request->email;
-        $usuario->password = $request->password;
-        $usuario->rol = $request->rol;
-        $usuario->user_id = Auth::id();
-        $usuario->update();
+        // $Rusuario = receptionist::find($id);
+        // $Rusuario->username = $request->username;
+        // $Rusuario->email = $request->email;
+        // $Rusuario->password = bcrypt($request->password);
+        // $Rusuario->rol = $request->rol;
+        // $Rusuario->user_id = $Rusuario->user->id;
+        // $Rusuario->update();
+
+        $recepcionista = receptionist::find($id);
+        $recepcionista->update([
+        'firstname' => $request->firstname,
+        'lastname' => $request->lastname,
+        'ci' => $request->ci,
+        'user_id' => $recepcionista->user->id,
+        ]);
+
+        $telefono = new telephone;
+        $telefono->type = $request->typeT1;
+        $telefono->number = $request->telephones1;
+        $telefono->receptionist_id = $recepcionista->id;
+        $telefono->save();
+
+        if ($request->typeT2 && $request->telephones2) {
+            $telefono = new telephone;
+            $telefono->type = $request->typeT2;
+            $telefono->number = $request->telephones2;
+            $telefono->receptionist_id = $recepcionista->id;
+            $telefono->save();
+        }
+
+        $direccion = new address;
+        $direccion->type = $request->typeA1;
+        $direccion->details = $request->address1;
+        $direccion->receptionist_id = $recepcionista->id;
+        $direccion->save();
+
+        if ($request->typeA2 && $request->address2) {
+            $direccion = new address;
+            $direccion->type = $request->typeA2;
+            $direccion->details = $request->address2;
+            $direccion->receptionist_id = $recepcionista->id;
+            $direccion->save();
+        }
 
         return back();
     }
 
+    public function show($id){
+        $recepcionista = receptionist::find($id);
+
+        return view('sistema/recepcionista/show')->with('recepcionista',$recepcionista);
+    }
+
     public function destroy($id)
     {
-        $usuario = receptionist::find($id);
-        $usuario->delete();
+        $recepcionista = receptionist::find($id);
+        $recepcionista->delete();
 
         return back();
     }

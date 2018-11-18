@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class receptionist extends Model
 {
     protected $fillable = [
-        'firstname', 'lastname', 'ci'
+        'firstname', 'lastname', 'ci', 'user_id',
     ];
 
     public function telephones(){
@@ -24,5 +24,9 @@ class receptionist extends Model
 
     public function casefiles(){
         return $this->hasMany('App\casefile');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }
