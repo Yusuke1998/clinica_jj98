@@ -3,6 +3,18 @@
 Clinica Privada
 @endsection
 @section('content')
-<h1>Hola vale xD</h1>
-<p>Que hay aqui?</p>
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">Dashboard</div>
+
+        <div class="card-body">
+            @if (session('status'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+            Tu estas logueado!
+        </div>
+    </div>
+</div>
 @endsection

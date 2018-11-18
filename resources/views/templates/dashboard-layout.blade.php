@@ -19,17 +19,60 @@
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
-            <div class="col-sm-8 col-md-7 py-4">
-              <h4 class="text-white">About</h4>
-              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+            <div class="col-md-10">
+              <h4 class="text-white">SISTEMA III.</h4>
+              <p class="text-muted">Clinica privada, sistema hecho para la materia de sistema 3 con la profesora Angela Lugo.</p>
             </div>
-            <div class="col-sm-4 offset-md-1 py-4">
-              <h4 class="text-white">Contact</h4>
-              <ul class="list-unstyled">
-                <li><a href="#" class="text-white">Follow on Twitter</a></li>
-                <li><a href="#" class="text-white">Like on Facebook</a></li>
-                <li><a href="#" class="text-white">Email me</a></li>
-              </ul>
+            <div class="col-md-2">
+                <div class="form-group">
+                    @guest 
+                        <ul style="list-style: none;" class="list-group">
+                          <li><a class="list-group-item list-group-item-action list-group-item-primary" href="{{ route('acceder') }}">{{ __('Acceder') }}</a></li>
+                          <li><a class="list-group-item list-group-item-action list-group-item-secondary" href="{{ route('registrar') }}">{{ __('Registrar') }}</a></li>
+                        </ul>
+                    @else
+                        <div class="panel">
+                        @if(Auth::user()->rol=="admin")
+                          <div class="text-white panel-title">
+                            Administrador
+                          </div>
+                          <div class="panel-body">
+                          <img width="100" class=" float-left img-thumbnail" src="{{asset('img/admin.png')}}" alt="administrador">
+                          </div>
+                        @endif
+
+                        @if(Auth::user()->rol=="receptionist")
+                        <div class="text-white panel-title">
+                            Recepcionista
+                          </div>
+                          <div class="panel-body">
+                          <img width="100" class=" float-left img-thumbnail" src="{{asset('img/recepcionista.png')}}" alt="recepcionista">
+                          </div>
+                        @endif
+
+                        @if(Auth::user()->rol=="doctor")
+                          <div class="text-white panel-title">
+                            Medico
+                          </div>
+                          <div class="panel-body">
+                          <img width="100" class=" float-left img-thumbnail" src="{{asset('img/doctor.png')}}" alt="medico">
+                          </div>
+                        @endif
+                          <div class="panel-footer">
+                            <a class="btn btn-danger" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('Cerrar') }}
+                            </a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+                          </div>
+                        </div>
+
+                  @endguest
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -55,12 +98,8 @@
         </div>
       </div>
     </main>
-
     <footer class="text-muted">
       <div class="container">
-        <p class="float-right">
-          <a href="#">Volver arriba</a>
-        </p>
         <p>clinica-by_Jhonny_prz!</p>
       </div>
     </footer>
