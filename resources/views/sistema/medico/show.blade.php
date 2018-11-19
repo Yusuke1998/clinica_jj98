@@ -1,58 +1,58 @@
 @extends('templates.dashboard-layout')
-@section('title') Recepcionista, {{$recepcionista->firstname}} {{$recepcionista->lastname}} @endsection
+@section('title') medico, {{$medico->firstname}} {{$medico->lastname}} @endsection
 @section('content')
 <div class="col-md-12">
-<h1>{{$recepcionista->firstname}} {{$recepcionista->lastname}}</h1>
+<h1>{{$medico->firstname}} {{$medico->lastname}}</h1>
 <div class="row">
 	<div class="col-md-2">
 		Usuario:
 	</div>
 	<div class="col-md-10">
-		{{$recepcionista->user->username}}
+		{{$medico->user->username}}
 	</div>
 	<div class="col-md-2">
 		Nombres:
 	</div>
 	<div class="col-md-10">
-		{{$recepcionista->firstname}}
+		{{$medico->firstname}}
 	</div>
 	<div class="col-md-2">
 		Apellidos:
 	</div>
 	<div class="col-md-10">
-		{{$recepcionista->lastname}}
+		{{$medico->lastname}}
 	</div>
 	<div class="col-md-2">
 		Cedula:
 	</div>
 	<div class="col-md-10">
-		{{$recepcionista->ci}}
+		{{$medico->ci}}
 	</div>
 	<div class="col-md-2">
 		Correo Electronico:
 	</div>
 	<div class="col-md-10">
-		{{$recepcionista->user->email}}
-		@if($recepcionista->email2)
-		/ {{$recepcionista->email2}}
+		{{$medico->user->email}}
+		@if($medico->email2)
+		/ {{$medico->email2}}
 		@endif
 	</div>
 	<div class="col-md-2">
 		Telefono:
 	</div>
 	<div class="col-md-10">
-		{{$recepcionista->telephone1}}
-		@if($recepcionista->telephone2)
-		/ {{$recepcionista->telephone2}}
+		{{$medico->telephone1}}
+		@if($medico->telephone2)
+		/ {{$medico->telephone2}}
 		@endif
 	</div>
 	<div class="col-md-2">
 		Direccion:
 	</div>
 	<div class="col-md-10">
-		{{$recepcionista->address1}}
-		@if($recepcionista->address2)
-		/ {{$recepcionista->address2}}
+		{{$medico->address1}}
+		@if($medico->address2)
+		/ {{$medico->address2}}
 		@endif
 	</div>
 </div>

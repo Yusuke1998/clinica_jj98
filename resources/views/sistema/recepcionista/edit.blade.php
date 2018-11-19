@@ -1,11 +1,10 @@
 @extends('templates.dashboard-layout')
-@section('title') Usuario @endsection
+@section('title') Recepcionista @endsection
 @section('content')
 <div class="col-md-12">
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal"> @yield('btn-modal','Nuevo')
 	</button>
-
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-lg" role="document">
@@ -32,52 +31,36 @@
 		      		<input required name="ci" id="ci" class="form-control" type="number">
 		      	</div>
 		      	<div class="form-group col-md-6">
-		      		<label for="telephones1">Telefono(1)</label>
-		      		<select required required name="typeT1">
-		      			<option value="casa">casa</option>
-		      			<option value="oficina">oficina</option>
-		      			<option value="movil">movil</option>
-		      		</select>
-		      		<input name="telephones1" id="telephones1" class="form-control" type="tel" required>
+		      		<label for="telephone1">Telefono</label>
+		      		<input name="telephone1" id="telephone1" class="form-control" type="tel" required>
 		      	</div>
 		      	<div class="form-group col-md-6">
-		      		<label for="telephones2">Telefono(2)</label>
-		      		<select name="typeT2">
-		      			<option value="casa">casa</option>
-		      			<option value="oficina">oficina</option>
-		      			<option value="movil">movil</option>
-		      		</select>
-		      		<input placeholder="(Opcional)" name="telephones2" id="telephones2" class="form-control" type="tel">
+		      		<label for="telephone2">Telefono(2)</label>
+		      		<input placeholder="(Opcional)" name="telephone2" id="telephone2" class="form-control" type="tel">
 		      	</div>
 		      	<div class="form-group col-md-6">
-		      		<label for="address1">Direccion(1)</label>
-		      		<select required="" name="typeA1">
-		      			<option value="Casa">Casa</option>
-		      			<option value="Trabajo">Trabajo</option>
-		      			<option value="Residencia">Residencia</option>
-		      		</select>
+		      		<label for="address1">Direccion</label>
 		      		<input required id="address1" class="form-control" type="text" name="address1">
 		      	</div>
 		      	<div class="form-group col-md-6">
 		      		<label for="address2">Direccion(2)</label>
-		      		<select name="typeA2">
-		      			<option value="Casa">Casa</option>
-		      			<option value="Trabajo">Trabajo</option>
-		      			<option value="Residencia">Residencia</option>
-		      		</select>
 		      		<input placeholder="(Opcional)" id="address2" class="form-control" type="text" name="address2">
 		      	</div>
-		      	<div class="form-group col-md-4">
+		      	<div class="form-group col-md-6">
+		      		<label for="email1">Correo Electronico</label>
+		      		<input required name="email1" id="email1" class="form-control" type="email">
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="email2">Correo Electronico 2</label>
+		      		<input required name="email2" id="email2" class="form-control" type="email">
+		      	</div>
+		      	<div class="form-group col-md-6">
 		      		<label for="username">Nombre de Usuario</label>
-		      		<input required id="username" class="form-control" type="text" name="username">
+		      		<input id="username" class="form-control" type="text" name="username">
 		      	</div>
-		      	<div class="form-group col-md-4">
+		      	<div class="form-group col-md-6">
 		      		<label for="password">Contraseña de Usuario</label>
-		      		<input required id="password" class="form-control" type="password" name="password">
-		      	</div>
-		      	<div class="form-group col-md-4">
-		      		<label for="email">Correo Electronico de Usuario</label>
-		      		<input required name="email" id="email" class="form-control" type="email">
+		      		<input id="password" class="form-control" type="password" name="password">
 		      	</div>
 		      </div>
 		      <div class="modal-footer">
@@ -108,9 +91,8 @@
 					<td>{{$recepcionista->ci}}</td>
 					<td>
 					<div class="btn-group">
-							
+						<a class="btn btn-primary btn-sm" href="{{route('recepcionistas.show',$recepcionista->id)}}">Ver</a>
 						<a class="btn btn-primary btn-sm" href="{{route('recepcionistas.edit',$recepcionista->id)}}">Editar</a>
-
 						<form action="{{route('recepcionistas.destroy',$recepcionista->id)}}" method="post">
 							@csrf
 							<input type="hidden" name="_method" value="DELETE">
@@ -144,35 +126,32 @@
 		      	</div>
 		      	<div class="form-group">
 		      		<label for="telephones1">Telefono</label>
-		      	<?php $unavez = true; ?>
-		      		<select name="typeT1">
-		      			<option value="casa">casa</option>
-		      			<option value="oficina">oficina</option>
-		      			<option value="movil">movil</option>
-		      		</select>
-		      	@foreach($editarr->telephones as $number)
+		      		<input name="telephone1" value="{{$editarr->telephone1}}" id="telephones1" class="form-control" type="text">
+		      	</div>
 
-		      		@if($unavez)
-		      		<input name="telephones1" value="{{$number->number}}" id="telephones1" class="form-control" type="text">
-		      		@endif
-		      		<?php $unavez = false; ?>
-		      	@endforeach
+		      	<div class="form-group">
+		      		<label for="telephone2">Telefono 2</label>
+		      		<input id="telephone2" class="form-control" placeholder="Opcional" value="{{$editarr->telephone2}}" type="text" name="telephone2">
+		      	</div>
+
+		      	<div class="form-group">
+		      		<label for="email1">Correo Electronico</label>
+		      		<input id="email1" class="form-control" value="{{$editarr->email1}}" type="text" name="email1">
+		      	</div>
+
+		      	<div class="form-group">
+		      		<label for="email2">Correo Electronico 2</label>
+		      		<input id="email2" class="form-control" placeholder="Opcional" value="{{$editarr->email2}}" type="text" name="email2">
 		      	</div>
 
 		      	<div class="form-group">
 		      		<label for="address1">Direccion</label>
-		      	<?php $unavez = true; ?>
-		      		<select name="typeA1">
-		      			<option value="Casa">Casa</option>
-		      			<option value="Trabajo">Trabajo</option>
-		      			<option value="Residencia">Residencia</option>
-		      		</select>
-		      	@foreach($editarr->addresses as $address)
-		      		@if($unavez)
-		      		<input id="address1" class="form-control" value="{{$address->details}}" type="text" name="address1">
-		      		@endif
-		      		<?php $unavez = false; ?>
-		      	@endforeach
+		      		<input id="address1" class="form-control" value="{{$editarr->address1}}" type="text" name="address1">
+		      	</div>
+
+		      	<div class="form-group">
+		      		<label for="address2">Direccion 2</label>
+		      		<input id="address2" class="form-control" placeholder="Opcional" value="{{$editarr->address2}}" type="text" name="address2">
 		      	</div>
 		      	
 		        <button type="submit" class=" form-control btn btn-primary">Actualizar</button>

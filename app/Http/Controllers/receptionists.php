@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\doctor;
+use App\casefile;
+use App\consultingroom;
+use App\patient;
+use App\specialty;
 use App\receptionist;
+use App\appointment;
+use App\bill;
+use App\evolution;
+use App\query;
 use App\User;
-use App\telephone;
-use App\email;
-use App\address;
 
 class receptionists extends Controller
 {
@@ -24,8 +30,8 @@ class receptionists extends Controller
     {
         $usuario = User::create([
         'username' => $request->username,
-        'email' => $request->email,
-        'rol' => 'receptionist',
+        'email' => $request->email1,
+        'rol' => 'doctor',
         'password' => bcrypt($request->password),
         ]);
         $getIdu = $usuario->id;
@@ -34,44 +40,22 @@ class receptionists extends Controller
         'firstname' => $request->firstname,
         'lastname' => $request->lastname,
         'ci' => $request->ci,
+        'telephone1' => $request->telephone1,
+        'telephone2' => $request->telephone2,
+        'email1' => $request->email1,
+        'email2' => $request->email2,
+        'address1' => $request->address1,
+        'address2' => $request->address2,
         'user_id' => $getIdu,
         ]);
-        $getIdr = $recepcionista->id;
+        $getIdm = $recepcionista->id;
 
-        $telefono = new telephone;
-        $telefono->type = $request->typeT1;
-        $telefono->number = $request->telephones1;
-        $telefono->receptionist_id = $getIdr;
-        $telefono->save();
-
-        if ($request->typeT2 && $request->telephones2) {
-            $telefono = new telephone;
-            $telefono->type = $request->typeT2;
-            $telefono->number = $request->telephones2;
-            $telefono->receptionist_id = $getIdr;
-            $telefono->save();
-        }
-
-        $direccion = new address;
-        $direccion->type = $request->typeA1;
-        $direccion->details = $request->address1;
-        $direccion->receptionist_id = $getIdr;
-        $direccion->save();
-
-        if ($request->typeA2 && $request->address2) {
-            $direccion = new address;
-            $direccion->type = $request->typeA2;
-            $direccion->details = $request->address2;
-            $direccion->receptionist_id = $getIdr;
-            $direccion->save();
-        }
         return back();
     }
 
     public function edit($id)
     {
         $editarr = receptionist::find($id);
-        // $telefonos = receptionist::find($id)->telephones;
         $recepcionistas = receptionist::all();
 
         return view('sistema/recepcionista/edit')
@@ -81,49 +65,18 @@ class receptionists extends Controller
 
     public function update(Request $request, $id)
     {
-        // $Rusuario = receptionist::find($id);
-        // $Rusuario->username = $request->username;
-        // $Rusuario->email = $request->email;
-        // $Rusuario->password = bcrypt($request->password);
-        // $Rusuario->rol = $request->rol;
-        // $Rusuario->user_id = $Rusuario->user->id;
-        // $Rusuario->update();
-
         $recepcionista = receptionist::find($id);
         $recepcionista->update([
         'firstname' => $request->firstname,
         'lastname' => $request->lastname,
         'ci' => $request->ci,
-        'user_id' => $recepcionista->user->id,
+        'telephone1' => $request->telephone1,
+        'telephone2' => $request->telephone2,
+        'email1' => $request->email1,
+        'email2' => $request->email2,
+        'address1' => $request->address1,
+        'address2' => $request->address2,
         ]);
-
-        $telefono = new telephone;
-        $telefono->type = $request->typeT1;
-        $telefono->number = $request->telephones1;
-        $telefono->receptionist_id = $recepcionista->id;
-        $telefono->save();
-
-        if ($request->typeT2 && $request->telephones2) {
-            $telefono = new telephone;
-            $telefono->type = $request->typeT2;
-            $telefono->number = $request->telephones2;
-            $telefono->receptionist_id = $recepcionista->id;
-            $telefono->save();
-        }
-
-        $direccion = new address;
-        $direccion->type = $request->typeA1;
-        $direccion->details = $request->address1;
-        $direccion->receptionist_id = $recepcionista->id;
-        $direccion->save();
-
-        if ($request->typeA2 && $request->address2) {
-            $direccion = new address;
-            $direccion->type = $request->typeA2;
-            $direccion->details = $request->address2;
-            $direccion->receptionist_id = $recepcionista->id;
-            $direccion->save();
-        }
 
         return back();
     }

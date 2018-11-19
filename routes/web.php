@@ -24,10 +24,10 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 	// Route::resource('/consultorios','doctorsoffices');
 	// Route::resource('/correos','emails');
 	// Route::resource('/evoluciones','evolutions');
-	// Route::resource('/pacientes','patients');
 	// Route::resource('/consultas','queries');
 	// Route::resource('/especialidades','specialties');
 	// Route::resource('/telefonos','phones');
+	Route::resource('/pacientes','patients');
 	Route::resource('/recepcionistas','receptionists');
 	Route::resource('/medicos','doctors');
 	Route::resource('/usuarios','users');

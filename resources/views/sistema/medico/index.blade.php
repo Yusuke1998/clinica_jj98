@@ -32,52 +32,36 @@
 		      		<input required name="ci" id="ci" class="form-control" type="number">
 		      	</div>
 		      	<div class="form-group col-md-6">
-		      		<label for="telephones1">Telefono(1)</label>
-		      		<select required name="typeT1">
-		      			<option value="casa">casa</option>
-		      			<option value="oficina">oficina</option>
-		      			<option value="movil">movil</option>
-		      		</select>
-		      		<input name="telephones1" id="telephones1" class="form-control" type="tel" required>
+		      		<label for="telephone1">Telefono</label>
+		      		<input name="telephone1" id="telephone1" class="form-control" type="tel" required>
 		      	</div>
 		      	<div class="form-group col-md-6">
-		      		<label for="telephones2">Telefono(2)</label>
-		      		<select name="typeT2">
-		      			<option value="casa">casa</option>
-		      			<option value="oficina">oficina</option>
-		      			<option value="movil">movil</option>
-		      		</select>
-		      		<input placeholder="(Opcional)" name="telephones2" id="telephones2" class="form-control" type="tel">
+		      		<label for="telephone2">Telefono(2)</label>
+		      		<input placeholder="(Opcional)" name="telephone2" id="telephone2" class="form-control" type="tel">
 		      	</div>
 		      	<div class="form-group col-md-6">
-		      		<label for="address1">Direccion(1)</label>
-		      		<select name="typeA1">
-		      			<option value="Casa">Casa</option>
-		      			<option value="Trabajo">Trabajo</option>
-		      			<option value="Residencia">Residencia</option>
-		      		</select>
+		      		<label for="address1">Direccion</label>
 		      		<input required id="address1" class="form-control" type="text" name="address1">
 		      	</div>
 		      	<div class="form-group col-md-6">
 		      		<label for="address2">Direccion(2)</label>
-		      		<select name="typeA2">
-		      			<option value="Casa">Casa</option>
-		      			<option value="Trabajo">Trabajo</option>
-		      			<option value="Residencia">Residencia</option>
-		      		</select>
 		      		<input placeholder="(Opcional)" id="address2" class="form-control" type="text" name="address2">
 		      	</div>
-		      	<div class="form-group col-md-4">
+		      	<div class="form-group col-md-6">
+		      		<label for="email1">Correo Electronico</label>
+		      		<input required name="email1" id="email1" class="form-control" type="email">
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="email2">Correo Electronico 2</label>
+		      		<input required name="email2" id="email2" class="form-control" type="email">
+		      	</div>
+		      	<div class="form-group col-md-6">
 		      		<label for="username">Nombre de Usuario</label>
 		      		<input id="username" class="form-control" type="text" name="username">
 		      	</div>
-		      	<div class="form-group col-md-4">
+		      	<div class="form-group col-md-6">
 		      		<label for="password">Contraseña de Usuario</label>
 		      		<input id="password" class="form-control" type="password" name="password">
-		      	</div>
-		      	<div class="form-group col-md-4">
-		      		<label for="email">Correo Electronico de Usuario</label>
-		      		<input required name="email" id="email" class="form-control" type="email">
 		      	</div>
 		      </div>
 		      <div class="modal-footer">

@@ -18,11 +18,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function receptionists(){
+    public function receptionist(){
     	return hasOne('App\receptionist');
     }
 
-    public function doctors(){
+    public function doctor(){
     	return hasOne('App\doctor');
     }
 

@@ -1,14 +1,14 @@
 @extends('templates.dashboard-layout')
-@section('title') Usuario @endsection
+@section('title') paciente @endsection
 @section('content')
 <div class="col-md-12">
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal"> @yield('btn-modal','Nuevo')
+	<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal"> @yield('btn-modal','Nuevo')
 	</button>
 
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog" role="document">
+	  <div class="modal-dialog modal-lg" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel"> @yield('btn-modal','Nuevo') </h5>
@@ -16,30 +16,53 @@
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
-            <form action="{{route('usuarios.store')}}" method="POST">
+            <form action="{{route('pacientes.store')}}" method="POST">
             @csrf
-		      <div class="modal-body">
-		      	<div class="form-group">
+		      <div class="modal-body row">
+		      	<div class="form-group col-md-4">
+		      		<label for="firstname">Nombres</label>
+		      		<input required id="firstname" class="form-control" type="text" name="firstname">
+		      	</div>
+		      	<div class="form-group col-md-4">
+		      		<label for="lastname">Apellidos</label>
+		      		<input required id="lastname" class="form-control" type="text" name="lastname">
+		      	</div>
+		      	<div class="form-group col-md-4">
+		      		<label for="ci">Cedula</label>
+		      		<input required name="ci" id="ci" class="form-control" type="number">
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="telephone1">Telefono</label>
+		      		<input name="telephone1" id="telephone1" class="form-control" type="tel" required>
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="telephone2">Telefono(2)</label>
+		      		<input placeholder="(Opcional)" name="telephone2" id="telephone2" class="form-control" type="tel">
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="address1">Direccion</label>
+		      		<input required id="address1" class="form-control" type="text" name="address1">
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="address2">Direccion(2)</label>
+		      		<input placeholder="(Opcional)" id="address2" class="form-control" type="text" name="address2">
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="email1">Correo Electronico</label>
+		      		<input required name="email1" id="email1" class="form-control" type="email">
+		      	</div>
+		      	<div class="form-group col-md-6">
+		      		<label for="email2">Correo Electronico 2</label>
+		      		<input required name="email2" id="email2" class="form-control" type="email">
+		      	</div>
+		      	<div class="form-group col-md-6">
 		      		<label for="username">Nombre de Usuario</label>
 		      		<input id="username" class="form-control" type="text" name="username">
 		      	</div>
-		      	<div class="form-group">
+		      	<div class="form-group col-md-6">
 		      		<label for="password">Contraseña de Usuario</label>
 		      		<input id="password" class="form-control" type="password" name="password">
 		      	</div>
-		      	<div class="form-group">
-		      		<label for="email">Correo Electronico</label>
-		      		<input name="email" id="email" class="form-control" type="email">
-		      	</div>
-		      	<div class="form-group">
-		      		<label for="rol">Tipo de usuario</label>
-		      		<select class="form-control" id="rol" name="rol">
-		      			<option value="receptionist">Recepcionista</option>
-		      			<option value="doctor">Medico</option>
-		      			<option value="admin">Administrador</option>
-		      		</select>
-		      	</div>
-
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -55,28 +78,29 @@
 	<table id="example" class="display" style="width:100%">
 		<thead>
 			<tr>
-				<th>Usuario</th>
-				<th>Correo Electronico</th>
-				<th>Rol</th>
+				<th>Nombres</th>
+				<th>Apellidos</th>
+				<th>Cedula</th>
 				<th>Creado</th>
 				<th>Accion</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($usuarios as $usuario)
+			@foreach($pacientes as $paciente)
 				<tr>
-					<td>{{$usuario->username}}</td>
-					<td>{{$usuario->email}}</td>
-					<td>{{$usuario->rol}}</td>
-					<td>{{($usuario->created_at)?$usuario->created_at->diffForHumans():'No hay registro...'}}</td>
+					<td>{{$paciente->firstname}}</td>
+					<td>{{$paciente->lastname}}</td>
+					<td>{{$paciente->ci}}</td>
+					<td>{{($paciente->created_at)?$paciente->created_at->diffForHumans():'No hay registro...'}}</td>
 					<td>
 					<div class="btn-group">
-						<a class="btn btn-primary btn-sm" href="{{route('usuarios.edit',$usuario->id)}}">Editar</a>
+						<a class="btn btn-warning btn-sm" href="{{route('pacientes.show',$paciente->id)}}">Ver</a>
+						<a class="btn btn-success btn-sm" href="{{route('pacientes.edit',$paciente->id)}}">Editar</a>
 						
-						<form action="{{route('usuarios.destroy',$usuario->id)}}" method="post">
+						<form action="{{route('pacientes.destroy',$paciente->id)}}" method="post">
 							@csrf
 							<input type="hidden" name="_method" value="DELETE">
-							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-primary btn-sm" type="submit">Eliminar</button>
+							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
 						</form>
 					</div>
 					</td>
