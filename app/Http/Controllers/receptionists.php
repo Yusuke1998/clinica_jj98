@@ -17,7 +17,11 @@ use App\User;
 
 class receptionists extends Controller
 {
-     
+    public function __construct()
+    {
+        $this->middleware('recepcionista');
+    }
+
     public function index()
     {
         $recepcionistas = receptionist::all();
@@ -48,7 +52,7 @@ class receptionists extends Controller
         'address2' => $request->address2,
         'user_id' => $getIdu,
         ]);
-        $getIdm = $recepcionista->id;
+        // $getIdm = $recepcionista->id;
 
         return back();
     }

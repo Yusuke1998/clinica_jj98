@@ -18,11 +18,11 @@ use App\User;
 
 class doctors extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('medico');
+    }
+
     public function index()
     {
         $medicos = doctor::all();

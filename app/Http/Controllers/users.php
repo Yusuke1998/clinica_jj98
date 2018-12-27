@@ -7,6 +7,11 @@ use App\User;
 
 class users extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('administrador');
+    }
+
     public function index()
     {
         $usuarios = User::all();
