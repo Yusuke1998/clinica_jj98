@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\receptionist;
+use App\doctor;
 
 class users extends Controller
 {
@@ -18,6 +20,21 @@ class users extends Controller
         return view('sistema/usuario/index')->with('usuarios',$usuarios);
     }
 
+    public function create()
+    {
+        return view('sistema/usuario/create');
+    }
+
+    public function createReceptionist()
+    {
+        //
+    }
+
+    public function createDoctor()
+    {
+        //
+    }
+
     public function store(Request $request)
     {
         // dd($request);
@@ -29,16 +46,14 @@ class users extends Controller
         
         $user->save();
 
-        return back();
+        return back()->with('info','Usuario creado con exito!');
     }
 
     public function edit($id)
     {
         $editaru = User::find($id);
-        $usuarios = User::all();
         return view('sistema/usuario/edit')
-        ->with('editaru',$editaru)
-        ->with('usuarios',$usuarios);
+        ->with('editaru',$editaru);
 
     }
 
@@ -52,14 +67,28 @@ class users extends Controller
         $usuario->rol = $request->rol;
         $usuario->update();
 
-        return back();
+        return back()->with('info','Usuario actualizado con exito!');
     }
 
     public function destroy($id)
     {
         $usuario = User::find($id);
-        $usuario->delete();
+        // dd($usuario->doctor());
 
-        return back();
+        if ($usuario->doctor) {
+
+            $medico = doctor::where('user_id',$usuario->id);
+            $medico->delete();
+
+        }elseif ($usuario->receptionist) {
+
+            $recepcionista = receptionist::where('user_id',$usuario->id);
+            $recepcionista->delete();
+
+        }else{
+            $usuario->delete();
+        }
+
+        return back()->with('info','Usuario eliminado con exito!');
     }
 }

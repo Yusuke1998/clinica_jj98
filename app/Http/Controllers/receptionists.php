@@ -30,12 +30,16 @@ class receptionists extends Controller
         ->with('recepcionistas',$recepcionistas);
     }
 
+    public function create(){
+        return view('sistema/recepcionista/create');
+    }
+
     public function store(Request $request)
     {
         $usuario = User::create([
         'username' => $request->username,
         'email' => $request->email1,
-        'rol' => 'doctor',
+        'rol' => 'receptionist',
         'password' => bcrypt($request->password),
         ]);
         $getIdu = $usuario->id;
@@ -52,9 +56,8 @@ class receptionists extends Controller
         'address2' => $request->address2,
         'user_id' => $getIdu,
         ]);
-        // $getIdm = $recepcionista->id;
 
-        return back();
+        return back()->with('info','Recepcionista creada con exito!');
     }
 
     public function edit($id)
@@ -82,7 +85,7 @@ class receptionists extends Controller
         'address2' => $request->address2,
         ]);
 
-        return back();
+        return back()->with('info','Recepcionista actualizada con exito!');
     }
 
     public function show($id){
@@ -94,8 +97,11 @@ class receptionists extends Controller
     public function destroy($id)
     {
         $recepcionista = receptionist::find($id);
-        $recepcionista->delete();
+        $usuario = User::find($recepcionista->user_id);
 
-        return back();
+        $recepcionista->delete();
+        $usuario->delete();
+
+        return back()->with('info','Recepcionista eliminada con exito!');
     }
 }

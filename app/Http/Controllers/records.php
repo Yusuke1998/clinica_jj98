@@ -3,82 +3,77 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\casefile;
+use App\patient;
+use App\ethnicGroup;
+use App\bloodType;
+use App\disease;
 class records extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $expedientes = casefile::all();
+        return view('sistema/expediente/index')->with('expedientes',$expedientes);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $pacientes = patient::all();
+        $etnias = ethnicGroup::all();
+        $sangres = bloodType::all();
+        $enfermedades = disease::all();
+        return view('sistema/expediente/create')
+        ->with('pacientes',$pacientes)
+        ->with('etnias',$etnias)
+        ->with('sangres',$sangres)
+        ->with('enfermedades',$enfermedades);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $expediente = casefile::create([
+            'allergy'               =>  $request->allergy,
+            'weight'                =>  $request->weight,
+            'height'                =>  $request->height,
+            'currentCondition_id'   =>  $request->currentCondition_id,
+            'inheritedDisease_id'   =>  $request->inheritedDisease_id,
+            'ethnic_group_id'       =>  $request->ethnic_group_id,
+            'blood_type_id'         =>  $request->blood_type_id,
+            'surgeries'             =>  $request->surgeries,
+            'user_id'               =>  $request->user_id,
+            'patient_id'            =>  $request->patient_id,
+            'dayDate'               =>  $request->dayDate,
+        ]);
+        return back()->with('info','Expediente creado exitosamente!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $expediente = casefile::find($id);
+        return view('sistema/expediente/show')->with('expediente',$expediente);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
-    {
-        //
+    {   $expediente = casefile::find($id);
+        $etnias = ethnicGroup::all();
+        $sangres = bloodType::all();
+        $enfermedades = disease::all();
+        return view('sistema/expediente/edit')
+        ->with('expediente',$expediente)
+        ->with('etnias',$etnias)
+        ->with('sangres',$sangres)
+        ->with('enfermedades',$enfermedades);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
-    {
-        //
+    {   $expediente = casefile::find($id);
+        $expediente->update($request->all());
+        return back()->with('info','Expediente actualizado con exito!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $expediente = casefile::find($id)->delete();
+        return back()->with('info','Expediente eliminado con exito!');
     }
 }

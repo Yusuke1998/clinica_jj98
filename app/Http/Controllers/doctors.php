@@ -31,7 +31,7 @@ class doctors extends Controller
 
     public function create()
     {
-        //
+        return view('sistema.medico.create');
     }
 
         public function store(Request $request)
@@ -58,7 +58,7 @@ class doctors extends Controller
         ]);
         $getIdm = $medico->id;
 
-        return back();
+        return back()->with('info','Medico creado con exito!');
     }
 
     public function show($id){
@@ -69,11 +69,9 @@ class doctors extends Controller
     public function edit($id)
     {
         $editard = doctor::find($id);
-        $medicos = doctor::all();
 
         return view('sistema/medico/edit')
-        ->with('editard',$editard)
-        ->with('medicos',$medicos);
+        ->with('editard',$editard);
     }
 
     public function update(Request $request, $id)
@@ -91,14 +89,16 @@ class doctors extends Controller
         'address2' => $request->address2,
         ]);
 
-        return back();
+        return back()->with('info','Medico actualizado con exito!');
     }
 
     public function destroy($id)
     {
         $medico = doctor::find($id);
+        $usuario = User::find($medico->user_id);
         $medico->delete();
+        $usuario->delete();
 
-        return back();
+        return back()->with('info','Medico eliminado con exito!');
     }
 }

@@ -20,16 +20,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 
-	Route::resource('/direcciones','addresses');
-	Route::resource('/citas','quotes');
-	Route::resource('/facturas','invoices');
-	Route::resource('/expedientes','records');
-	Route::resource('/consultorios','doctorsoffices');
-	Route::resource('/evoluciones','evolutions');
-	Route::resource('/consultas','queries');
-	Route::resource('/especialidades','specialties');
+	// Pacintes
 	Route::resource('/pacientes','patients');
+	Route::resource('/expedientes','records');
+	Route::resource('/evoluciones','evolutions');
+	Route::get('/{id}/evoluciones/','evolutions@nueva')->name('evoluciones.nueva');
+	Route::resource('/citas','quotes');
+
+	// recepcionistas
 	Route::resource('/recepcionistas','receptionists');
+	Route::resource('/facturas','invoices');
+
+	// Medicos
 	Route::resource('/medicos','doctors');
+	Route::resource('/especialidades','specialties');
+	Route::resource('/consultorios','doctorsoffices');
+	Route::resource('/consultas','queries');
+
+	// Usuarios
 	Route::resource('/usuarios','users');
+	Route::get('/crearD', 'users@createDoctor')->name('usuarios.createDoctor');
+	Route::get('/crearR', 'users@createReceptionist')->name('usuarios.createReceptionist');
+
 });

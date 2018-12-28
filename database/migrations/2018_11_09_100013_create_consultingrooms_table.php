@@ -19,7 +19,7 @@ class CreateConsultingroomsTable extends Migration
             $table->timestamps();
 
             $table->integer('doctor_id')->unsigned();
-            $table->foreign('doctor_id')->references('id')->on('doctors');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
         });
     }
 

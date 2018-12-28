@@ -18,12 +18,16 @@ class User extends Authenticatable
         'remember_token','password'
     ];
 
+    public function records(){
+        return $this->hasMany('App\casefile');
+    }
+
     public function receptionist(){
-    	return hasOne('App\receptionist');
+    	return $this->hasOne('App\receptionist');
     }
 
     public function doctor(){
-    	return hasOne('App\doctor');
+    	return $this->hasOne('App\doctor');
     }
 
 }

@@ -19,6 +19,6 @@ class patient extends Model
     }
 
     public function aquery(){
-        return $this->belongsTo('App\query');
+        return $this->hasMany('App\query');
     }
 }

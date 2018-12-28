@@ -25,16 +25,12 @@ class patients extends Controller
         ->with('pacientes',$pacientes);
     }
 
+    public function create(){
+        return view('sistema/paciente/create');
+    }
+
     public function store(Request $request)
     {
-        $usuario = User::create([
-        'username' => $request->username,
-        'email' => $request->email1,
-        'rol' => 'doctor',
-        'password' => bcrypt($request->password),
-        ]);
-        $getIdu = $usuario->id;
-
         $paciente = patient::create([
         'firstname' => $request->firstname,
         'lastname' => $request->lastname,
@@ -45,11 +41,8 @@ class patients extends Controller
         'email2' => $request->email2,
         'address1' => $request->address1,
         'address2' => $request->address2,
-        'user_id' => $getIdu,
         ]);
-        $getIdm = $paciente->id;
-
-        return back();
+        return back()->with('info','Paciente creado con exito!');
     }
 
     public function edit($id)
@@ -77,7 +70,7 @@ class patients extends Controller
         'address2' => $request->address2,
         ]);
 
-        return back();
+        return back()->with('info','Paciente actualizado con exito!');
     }
 
     public function show($id){
@@ -89,8 +82,10 @@ class patients extends Controller
     public function destroy($id)
     {
         $paciente = patient::find($id);
+        // $usuario = User::find($paciente->user_id);
         $paciente->delete();
+        // $usuario->delete();
 
-        return back();
+        return back()->with('info','Paciente creado con exito!');
     }
 }

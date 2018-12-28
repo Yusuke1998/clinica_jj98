@@ -19,11 +19,11 @@ class doctor extends Model
     }
 
     public function consultingroom(){
-        return $this->belongsTo('App\consultingroom');
+        return $this->hasOne('App\consultingroom');
     }
 
     public function aquery(){
-        return $this->belongsTo('App\query');
+        return $this->hasOne('App\query');
     }
 
     public function user(){

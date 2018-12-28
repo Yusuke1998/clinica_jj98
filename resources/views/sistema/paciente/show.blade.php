@@ -1,6 +1,8 @@
-@extends('templates.dashboard-layout')
-@section('title') paciente, {{$paciente->firstname}} {{$paciente->lastname}} @endsection
-@section('content')
+@extends('templates.dashboard-template')
+@section('title')
+Clinica Privada
+@endsection
+@section('content-dashboard')
 <div class="col-md-12">
 <h1>{{$paciente->firstname}} {{$paciente->lastname}}</h1>
 <div class="row">

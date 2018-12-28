@@ -11,6 +11,6 @@ class consultingroom extends Model
     ];
 
     public function doctor(){
-        return $this->hasOne('App\doctor');
+        return $this->belongsTo('App\doctor');
     }
 }

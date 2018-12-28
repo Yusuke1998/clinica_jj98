@@ -4,7 +4,7 @@ Clinica Privada
 @endsection
 @section('content-dashboard')
 <form action="{{route('medicos.store')}}" method="POST">
-@csrf
+    @csrf
   <div class="modal-body row">
   	<div class="form-group col-md-4">
   		<label for="firstname">Nombres</label>

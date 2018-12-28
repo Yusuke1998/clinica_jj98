@@ -11,11 +11,11 @@ class query extends Model
     ];
 
     public function patient(){
-    	return $this->hasMany('App\patient');
+    	return $this->belongsTo('App\patient');
     }
 
     public function doctor(){
-    	return $this->hasMany('App\doctor');
+    	return $this->belongsTo('App\doctor');
     }
 
 

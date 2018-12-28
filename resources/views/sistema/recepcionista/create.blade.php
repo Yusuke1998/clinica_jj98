@@ -3,7 +3,7 @@
 Clinica Privada
 @endsection
 @section('content-dashboard')
-<form action="{{route('medicos.store')}}" method="POST">
+<form action="{{route('recepcionistas.store')}}" method="POST">
 @csrf
   <div class="modal-body row">
   	<div class="form-group col-md-4">
@@ -56,4 +56,4 @@ Clinica Privada
     <button type="submit" class="btn btn-primary">Registrar</button>
   </div>
 </form>
-@endsection
+@stop
