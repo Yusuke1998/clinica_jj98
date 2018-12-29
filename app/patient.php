@@ -21,4 +21,8 @@ class patient extends Model
     public function aquery(){
         return $this->hasMany('App\query');
     }
+
+    public function appointment(){
+        return $this->hasMany('App\appointment');
+    }
 }

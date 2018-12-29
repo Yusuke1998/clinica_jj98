@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EthnicGroupController extends Controller
+class bloodtypes extends Controller
 {
     //
 }

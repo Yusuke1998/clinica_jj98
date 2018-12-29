@@ -22,7 +22,7 @@ Clinica Privada
 
                 <li><a title="Pacientes" data-toggle="modal" href="#PacientesModal"><span class="glyphicon glyphicon-plus-sign"></span> Pacientes</a></li>
 
-                <li><a title="Calendario" data-toggle="modal" href="#CalendarioModal"><span class="glyphicon glyphicon-plus-sign"></span> Calendario</a></li>
+                <li><a title="Calendario" data-toggle="modal" href="#CalendarioModal"><span class="glyphicon glyphicon-plus-sign"></span> Citas</a></li>
 
                 <li><a title="Opciones" data-toggle="modal" href="#OpcionesModal"><span class="glyphicon glyphicon-plus-sign"></span> Opciones</a></li>
 
@@ -144,11 +144,14 @@ Clinica Privada
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Opciones para calendario</h4>
+              <h4 class="modal-title">Opciones para citas</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
             <div class="modal-body">
-              <p>Aqui va un Calendario!</p>
+              <ul>
+                <li><a href="{{ Route('citas.index') }}" title="Todas las citas">Lista de Citas</a></li>
+                <li><a href="{{ Route('citas.create') }}" title="Nueva cita">Nueva Cita</a></li>
+              </ul>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>

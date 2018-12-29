@@ -9,8 +9,7 @@
     <title> @yield('title','CLINICA JJPM') </title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>
-    {{-- <link rel="stylesheet" type="text/css" href="{{asset('css/admin.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrapadmin.css')}}"> --}}
+    <link rel="stylesheet" type="text/css" href="{{asset('fullcalendar/fullcalendar.css')}}"/>
   </head>
 
   <body>

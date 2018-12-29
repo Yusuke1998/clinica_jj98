@@ -10,6 +10,7 @@ Route::get('sistema',function(){
 	return redirect('/');
 });
 
+
 // Usuarios autenticados
 
 Route::get('/registrar',function(){
@@ -30,6 +31,7 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 	// recepcionistas
 	Route::resource('/recepcionistas','receptionists');
 	Route::resource('/facturas','invoices');
+	Route::resource('/calendario','calendaries');
 
 	// Medicos
 	Route::resource('/medicos','doctors');
