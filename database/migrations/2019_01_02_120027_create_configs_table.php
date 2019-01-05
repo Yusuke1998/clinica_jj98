@@ -10,12 +10,12 @@ class CreateConfigsTable extends Migration
     {
         Schema::create('configs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('p0')->nullable();
-            $table->string('p1')->nullable();
-            $table->string('p2')->nullable();
-            $table->string('p3')->nullable();
-            $table->string('p4')->nullable();
-            $table->string('p5')->nullable();
+            $table->string('name')->nullable();
+            $table->string('rif')->nullable();
+            $table->string('telephone')->nullable();
+            $table->string('iva')->nullable();
+            $table->string('address')->nullable();
+            $table->string('logo')->default('logo.png')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
