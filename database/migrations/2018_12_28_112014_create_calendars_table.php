@@ -13,6 +13,8 @@ class CreateCalendarsTable extends Migration
             $table->string('title');
             $table->string('start');
             $table->string('end')->nullable();
+            $table->string('color')->nullable();
+            $table->string('url')->nullable();
             $table->string('start_time_on')->nullable();
             $table->string('start_time_off')->nullable();
             $table->integer('appointment_id')->unsigned()->nullable();

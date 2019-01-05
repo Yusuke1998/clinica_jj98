@@ -39,6 +39,7 @@ Clinica Privada
       editable: false,
       navLinks: true, // can click day/week names to navigate views
       eventLimit: true,
+      selectable: true,
       events: 
       {
         url: '/sistema/calendario',

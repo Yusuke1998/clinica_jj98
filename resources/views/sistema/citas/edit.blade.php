@@ -60,6 +60,45 @@ Clinica Privada
       </select>
     </div>
 
+    <div class="col-md-6 form-group">
+      <label for="status">Estatus de cita</label>
+      <select id="status" class="form-control" name="status">
+
+        @if($cita->status == 'Pendiente')
+            <option selected value="Pendiente">Pendiente</option>
+            <option value="Completa">Completa</option>
+            <option value="No asistio">No asistio</option>
+            <option value="Cancelada">Cancelada</option>
+        @endif
+        @if($cita->status == 'Completa')
+            <option value="Pendiente">Pendiente</option>
+            <option selected value="Completa">Completa</option>
+            <option value="No asistio">No asistio</option>
+            <option value="Cancelada">Cancelada</option>
+        @endif
+        @if($cita->status == 'No asistio')
+            <option value="Pendiente">Pendiente</option>
+            <option value="Completa">Completa</option>
+            <option selected value="No asistio">No asistio</option>
+            <option value="Cancelada">Cancelada</option>
+        @endif
+        @if($cita->status == 'Cancelada')
+            <option value="Pendiente">Pendiente</option>
+            <option value="Completa">Completa</option>
+            <option value="No asistio">No asistio</option>
+            <option selected value="Cancelada">Cancelada</option>
+        @endif
+        @if(!$cita->status)
+            <option value="Pendiente">Pendiente</option>
+            <option value="Completa">Completa</option>
+            <option value="No asistio">No asistio</option>
+            <option value="Cancelada">Cancelada</option>
+        @endif
+
+      </select>
+    </div>
+
+
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Actualizar</button>

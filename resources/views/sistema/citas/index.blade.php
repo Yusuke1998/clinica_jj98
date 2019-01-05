@@ -8,6 +8,7 @@ Clinica Privada
 		<thead>
 			<tr>
 				<th>Fecha</th>
+				<th>Hora</th>
 				<th>Paciente</th>
 				<th>Doctor</th>
 				<th>Accion</th>
@@ -16,7 +17,13 @@ Clinica Privada
 		<tbody>
 			@foreach($citas as $cita)
 				<tr>
-					<td>{{($cita->calendar)?$cita->calendar->start:'No tiene fecha'}}</td>
+					<td>
+						{{str_replace('T'.$cita->calendar->start_time_on, '', $cita->calendar->start)}}
+					</td>
+					<td>
+						{{$cita->calendar->start_time_on}}
+						{{($cita->calendar->start_time_on>12)?'pm':'am'}}
+					</td>
 					<td>
 						{{$cita->patient->firstname}}&nbsp{{$cita->patient->lastname}}
 					</td>
@@ -25,7 +32,7 @@ Clinica Privada
 					</td>
 					<td>
 						<div class="btn-group">
-							<a class="btn btn-warning btn-sm" href="{{route('citas.show',$cita->id)}}">Ver</a>
+							<a class="btn btn-info btn-sm" href="{{route('citas.show',$cita->id)}}">Ver</a>
 							<a class="btn btn-success btn-sm" href="{{route('citas.edit',$cita->id)}}">Editar</a>
 							
 							<form action="{{route('citas.destroy',$cita->id)}}" method="post">

@@ -14,9 +14,6 @@ class calendaries extends Controller
 
     public function index()
     {
-    	// $calendarios = calendar::all();
-    	// return response()->json($calendarios);
-
     	$calendarios = calendar::all();
     	return response()->json($calendarios);
     }

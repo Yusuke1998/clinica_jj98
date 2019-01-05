@@ -82,7 +82,6 @@ Clinica Privada
               <ul>
                 <li><a href="{{ Route('medicos.index') }}" title="Lista de medicos">Lista de medicos</a></li>
                 <li><a href="{{ Route('medicos.create') }}" title="Crear nuevo">Nuevo</a></li>
-                <li><a href="{{ Route('consultas.index') }}" title="Consultas">Consultas</a></li>
                 <li><a href="{{ Route('consultorios.index') }}" title="Consultorios">Consultorios</a></li>
                 <li><a href="{{ Route('especialidades.index') }}" title="Especialidades">Especialidades</a></li>
 
@@ -168,7 +167,9 @@ Clinica Privada
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
             <div class="modal-body">
-              <p>Add a widget stuff here..</p>
+              <ul>
+                <li><a href="{{ Route('configuraciones.index') }}" title="Caracteristicas del sistema">Editar caracteristicas del sistema</a></li>
+              </ul>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>

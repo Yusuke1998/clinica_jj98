@@ -34,11 +34,14 @@ class quotes extends Controller
         $cita->user_id = $request->user_id;
         $cita->patient_id = $request->patient_id;
         $cita->doctor_id = $request->doctor_id;
+        $cita->status = 'Pendiente';
         $cita->save();
 
         $calendario->title = $request->title;
         $calendario->start = $request->start.'T'.$request->start_time_on;
         $calendario->end = $request->start.'T'.$request->start_time_off;
+        $calendario->color = 'green';
+        $calendario->url = URL('/sistema/citas/').'/'.$cita->id;
         $calendario->start_time_on = $request->start_time_on;
         $calendario->start_time_off = $request->start_time_off;
         $calendario->appointment_id = $cita->id;
@@ -71,19 +74,40 @@ class quotes extends Controller
         $calendario = calendar::where('appointment_id',$id);
         $start = $request->start.'T'.$request->start_time_on;
         $end = $request->start.'T'.$request->start_time_off;
-        // dd($start);
+        
+        // Se asigna el color dependiendo del estatus de la cita
+        switch ($request->status) {
+            case 'Pendiente':
+                $color = 'blue';
+                break;
+            case 'Completa':
+                $color = 'green';
+                break;
+            case 'Cancelada':
+                $color = 'red';
+                break;
+            case 'No asistio':
+                $color = 'gray';
+                break;
+            default:
+                $color = 'blue';
+                break;
+        }
+
         $calendario->update([
             'title'             =>  $request->title,
             'start'             =>  $start,
             'end'               =>  $end,
             'start_time_on'     =>  $request->start_time_on,
             'start_time_off'    =>  $request->start_time_off,
+            'color'             =>  $color,
         ]);
 
         $cita = appointment::find($id)->update([
-            'user_id'   =>  $request->user_id,
-            'patient_id'   =>  $request->patient_id,
-            'doctor_id'   =>  $request->doctor_id,
+            'user_id'       =>  $request->user_id,
+            'patient_id'    =>  $request->patient_id,
+            'doctor_id'     =>  $request->doctor_id,
+            'status'        =>  $request->status, 
         ]);
 
         return back()->with('info','Cita actualizada con exito!');

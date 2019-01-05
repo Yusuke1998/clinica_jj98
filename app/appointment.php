@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class appointment extends Model
 {
     protected $fillable = [
-        'patient_id','user_id','doctor_id'
+        'patient_id','user_id','doctor_id','status'
     ];
 
     public function calendar(){
@@ -24,5 +24,9 @@ class appointment extends Model
 
     public function doctor(){
     	return $this->belongsTo('App\doctor');
+    }
+
+    public function bill(){
+        return $this->hasOne('App\bill');
     }
 }

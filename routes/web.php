@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 
+	Route::resource('/configuraciones','ConfigController');
 	// Pacintes
 	Route::resource('/pacientes','patients');
 	Route::resource('/expedientes','records');
@@ -37,7 +38,6 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 	Route::resource('/medicos','doctors');
 	Route::resource('/especialidades','specialties');
 	Route::resource('/consultorios','doctorsoffices');
-	Route::resource('/consultas','queries');
 
 	// Usuarios
 	Route::resource('/usuarios','users');

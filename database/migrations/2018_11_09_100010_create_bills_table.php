@@ -18,15 +18,12 @@ class CreateBillsTable extends Migration
             $table->string('code')->unique();
             $table->float('amountPaylable');
 
-            $table->integer('query_id')->unsigned();
-            $table->integer('doctor_id')->unsigned();
-            $table->integer('patient_id')->unsigned();
+            $table->integer('appointment_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
-            $table->foreign('query_id')->references('id')->on('queries')->onDelete('cascade');
+            $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
 
-            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
-
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });
