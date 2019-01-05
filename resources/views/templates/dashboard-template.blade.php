@@ -56,13 +56,20 @@ Clinica Privada
               <h4 class="modal-title">Opciones para usuarios</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li><a href="{{ Route('usuarios.index') }}" title="Todos los Usuarios">Lista de Usuarios</a></li>
-                <li><a href="{{ Route('usuarios.create') }}" title="Crear nuevo Usuario">Nuevo</a></li>
-                {{-- <li><a href="{{ Route('usuarios.createDoctor') }}" title="Crear nuevo Usuario Medico">Usuario medico</a></li>
-                <li><a href="{{ Route('usuarios.createReceptionist') }}" title="Crear nuevo Usuario Recepcionista">Usuario recepcionista</a></li> --}}
-              </ul>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="{{ Route('usuarios.index') }}" title="Todos los Usuarios">Lista de Usuarios</a></li>
+                  <li><a href="{{ Route('usuarios.create') }}" title="Crear nuevo Usuario">Nuevo</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/usuarios.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
@@ -78,14 +85,22 @@ Clinica Privada
               <h4 class="modal-title">Opciones para medicos</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li><a href="{{ Route('medicos.index') }}" title="Lista de medicos">Lista de medicos</a></li>
-                <li><a href="{{ Route('medicos.create') }}" title="Crear nuevo">Nuevo</a></li>
-                <li><a href="{{ Route('consultorios.index') }}" title="Consultorios">Consultorios</a></li>
-                <li><a href="{{ Route('especialidades.index') }}" title="Especialidades">Especialidades</a></li>
-
-              </ul>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="{{ Route('medicos.index') }}" title="Lista de medicos">Lista de medicos</a></li>
+                  <li><a href="{{ Route('medicos.create') }}" title="Crear nuevo">Nuevo</a></li>
+                  <li><a href="{{ Route('consultorios.index') }}" title="Consultorios">Consultorios</a></li>
+                  <li><a href="{{ Route('especialidades.index') }}" title="Especialidades">Especialidades</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/medico.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
@@ -101,11 +116,20 @@ Clinica Privada
               <h4 class="modal-title">Opciones para recepcionistas</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li><a href="{{ Route('recepcionistas.index') }}" title="Todos los Recepcionistas">Lista de Recepcionistas</a></li>
-                <li><a href="{{ Route('recepcionistas.create') }}" title="Crear nueva recepcionista">Nueva</a></li>
-              </ul>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="{{ Route('recepcionistas.index') }}" title="Todos los Recepcionistas">Lista de Recepcionistas</a></li>
+                  <li><a href="{{ Route('recepcionistas.create') }}" title="Crear nueva recepcionista">Nueva</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/recepcionistas.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
@@ -121,16 +145,25 @@ Clinica Privada
               <h4 class="modal-title">Opciones para pacientes</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li><a href="{{ Route('pacientes.index') }}" title="Todos los Pacientes">Lista de Pacientes</a></li>
-                <li><a href="{{ Route('pacientes.create') }}" title="Nuevo Paciente">Nuevo Paciente</a></li>
-                <li><a href="{{ Route('expedientes.index') }}" title="Lista de expedientes">Expedientes</a></li>
-                <li><a href="{{ Route('expedientes.create') }}" title="Crear expediente">Nuevo Expediente</a></li>
-                <li><a href="{{ Route('evoluciones.index') }}" title="Lista de evoluciones">Evoluciones</a></li>
-                <li><a href="{{ Route('evoluciones.create') }}" title="Crear evolucion">Nueva Evolucion de paciente</a></li>
-                <li><a href="{{ Route('citas.create') }}" title="Crear cita">Nueva Cita</a></li>
-              </ul>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="{{ Route('pacientes.index') }}" title="Todos los Pacientes">Lista de Pacientes</a></li>
+                  <li><a href="{{ Route('pacientes.create') }}" title="Nuevo Paciente">Nuevo Paciente</a></li>
+                  <li><a href="{{ Route('expedientes.index') }}" title="Lista de expedientes">Expedientes</a></li>
+                  <li><a href="{{ Route('expedientes.create') }}" title="Crear expediente">Nuevo Expediente</a></li>
+                  <li><a href="{{ Route('evoluciones.index') }}" title="Lista de evoluciones">Evoluciones</a></li>
+                  <li><a href="{{ Route('evoluciones.create') }}" title="Crear evolucion">Nueva Evolucion de paciente</a></li>
+                  <li><a href="{{ Route('citas.create') }}" title="Crear cita">Nueva Cita</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/pacientes.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
@@ -166,10 +199,19 @@ Clinica Privada
               <h4 class="modal-title">Opciones</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li><a href="{{ Route('configuraciones.index') }}" title="Caracteristicas del sistema">Editar caracteristicas del sistema</a></li>
-              </ul>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="{{ Route('configuraciones.index') }}" title="Caracteristicas del sistema">Editar caracteristicas del sistema</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/configuracion.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>

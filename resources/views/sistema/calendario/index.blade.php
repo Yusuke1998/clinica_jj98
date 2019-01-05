@@ -14,7 +14,31 @@ Clinica Privada
 
 <div class="alert alert-info" id='loading'>Cargando...</div>
 
-<div id='calendar'></div>
+<div style="color: black;" id='calendar'></div>
+  <hr>
+  <div class="row">
+    <p class=" col-md-12 text-center h5">Estado de citas!</p>
+
+    <div class="text-center col-xs-3 col-md-3">
+      <p>
+        <span style="padding: 5px; border-radius: 15%" class="bg-danger">Cancelada</span></p>
+    </div>
+
+    <div class="text-center col-xs-3 col-md-3">
+      <p>
+        <span style="padding: 5px; border-radius: 15%" class="bg-info">Pendiente</span></p>
+    </div>
+
+    <div class="text-center col-xs-3 col-md-3">
+      <p>
+        <span style="padding: 5px; border-radius: 15%" class="bg-success">Completa</span></p>
+    </div>
+
+    <div class="text-center col-xs-3 col-md-3">
+      <p>
+        <span style="padding: 5px; border-radius: 15%" class="bg-warning">No asistio</span></p>
+    </div>
+  </div>
 
 @endsection
 

@@ -51,7 +51,7 @@ Clinica Privada
 			<div class="form-group col-md-6 pull-right">
 				<p class="text-center h4">Logo actual</p>
 				<center>
-					<img src="{{ ($configuracion[0]->logo)?asset('img/').'/'.$configuracion[0]->logo:'' }}" width="100" alt="Logo actual">
+					<img src="{{ ($configuracion[0]->logo)?asset('img/logos').'/'.$configuracion[0]->logo:asset('img/logos').'/logo.png' }}" width="100" alt="Logo actual">
 					
 				</center>
 			</div>

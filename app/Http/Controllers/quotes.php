@@ -40,7 +40,7 @@ class quotes extends Controller
         $calendario->title = $request->title;
         $calendario->start = $request->start.'T'.$request->start_time_on;
         $calendario->end = $request->start.'T'.$request->start_time_off;
-        $calendario->color = 'green';
+        $calendario->color = 'blue';
         $calendario->url = URL('/sistema/citas/').'/'.$cita->id;
         $calendario->start_time_on = $request->start_time_on;
         $calendario->start_time_off = $request->start_time_off;
@@ -78,19 +78,23 @@ class quotes extends Controller
         // Se asigna el color dependiendo del estatus de la cita
         switch ($request->status) {
             case 'Pendiente':
-                $color = 'blue';
+                // bg-info
+                $color = '#6cb2eb';
                 break;
             case 'Completa':
-                $color = 'green';
+                $color = '#38c172';
+                // bg-scuccess
                 break;
             case 'Cancelada':
-                $color = 'red';
+                $color = '#e3342f';
+                // bg-danger
                 break;
             case 'No asistio':
-                $color = 'gray';
+                $color = '#ffed4a';
+                // bg-warning
                 break;
             default:
-                $color = 'blue';
+                $color = 'darkblue';
                 break;
         }
 

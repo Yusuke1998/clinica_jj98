@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('fullcalendar/fullcalendar.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('css/my.css')}}"/>
   </head>
 
   <body>
