@@ -1,5 +1,5 @@
 <?php
-
+// CITAS
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,6 +7,7 @@ use App\appointment;
 use App\calendar;
 use App\doctor;
 use App\patient;
+use App\bill;
 
 class quotes extends Controller
 {
@@ -30,6 +31,7 @@ class quotes extends Controller
         // dd($request);
         $cita = new appointment();
         $calendario = new calendar();
+        $factura = new bill();
 
         $cita->user_id = $request->user_id;
         $cita->patient_id = $request->patient_id;
@@ -37,17 +39,23 @@ class quotes extends Controller
         $cita->status = 'Pendiente';
         $cita->save();
 
+        $factura->amountPaylable = $request->amountPaylable;
+        $factura->code = 'CO'.time();
+        $factura->appointment_id = $cita->id;
+        $factura->user_id = \Auth::User()->id;
+        $factura->save();
+
         $calendario->title = $request->title;
         $calendario->start = $request->start.'T'.$request->start_time_on;
         $calendario->end = $request->start.'T'.$request->start_time_off;
-        $calendario->color = 'blue';
+        $calendario->color = '#6cb2eb';
         $calendario->url = URL('/sistema/citas/').'/'.$cita->id;
         $calendario->start_time_on = $request->start_time_on;
         $calendario->start_time_off = $request->start_time_off;
         $calendario->appointment_id = $cita->id;
         $calendario->save();
 
-        return back()->with('info','Cita creada con exito!');
+        return redirect(Route('facturas.show',$factura->id))->with('info','Cita creada con exito!');
     }
 
     public function show($id)
@@ -71,7 +79,9 @@ class quotes extends Controller
 
     public function update(Request $request, $id)
     {
-        $calendario = calendar::where('appointment_id',$id);
+        $calendario  = calendar::where('appointment_id',$id);
+        $factura     = bill::where('appointment_id',$id);
+
         $start = $request->start.'T'.$request->start_time_on;
         $end = $request->start.'T'.$request->start_time_off;
         
@@ -112,6 +122,10 @@ class quotes extends Controller
             'patient_id'    =>  $request->patient_id,
             'doctor_id'     =>  $request->doctor_id,
             'status'        =>  $request->status, 
+        ]);
+
+        $factura->update([
+            'amountPaylable' => $request->amountPaylable
         ]);
 
         return back()->with('info','Cita actualizada con exito!');

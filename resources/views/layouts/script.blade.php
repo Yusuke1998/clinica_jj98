@@ -2,7 +2,9 @@
 <script  type="text/javascript" src="{{asset('DataTables/jquery/jquery-3.3.1.js')}}"></script>
 <script  type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 <script  type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"></script>
-<script  type="text/javascript" src='{{ asset('fullcalendar/lib/moment.min.js') }}'></script>
+<script  type="text/javascript" src='{{asset('fullcalendar/lib/moment.min.js') }}'></script>
+<script  type="text/javascript" src="{{asset('chosen/chosen.jquery.js')}}"></script>
+
 {{-- <script  type="text/javascript" src='{{ asset('fullcalendar/lib/jquery.min.js') }}'></script> --}}
 <script  type="text/javascript" src='{{ asset('fullcalendar/fullcalendar.min.js') }}'></script>
 
@@ -31,4 +33,16 @@
   });
 </script>
 <!-- DATA TABLES -->
+
+<!-- CHOSEN-->
+<script>
+    $(".my_select_box").chosen({
+    disable_search_threshold: 10,
+    allow_single_deselect: true,
+    no_results_text: "No se encontraron resultados!",
+    width: "100%"
+  });
+</script>
+<!-- CHOSEN-->
+
 @yield('script-person')

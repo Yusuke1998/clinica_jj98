@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateDoctorsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('doctors', function (Blueprint $table) {
@@ -26,16 +21,14 @@ class CreateDoctorsTable extends Migration
             $table->string('email2')->nullable();
             
             $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('consultingroom_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('consultingroom_id')->references('id')->on('consultingrooms')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('doctors');

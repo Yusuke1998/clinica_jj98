@@ -1,7 +1,4 @@
 @extends('templates/dashboard-template')
-@section('title')
-Clinica Privada
-@endsection
 @section('content-dashboard')
 <style>
 	#loading {

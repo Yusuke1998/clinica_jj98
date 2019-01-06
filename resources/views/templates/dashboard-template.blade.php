@@ -1,7 +1,5 @@
 @extends('templates/dashboard-layout')
-@section('title')
-Clinica Privada
-@endsection
+@section('title') {{ (App\config::find(1)->name)?App\config::find(1)->name:'Clinica' }} @endsection
 @section('content')
 <!-- Main -->
     <div class="col-md-3">
@@ -39,7 +37,10 @@ Clinica Privada
           <h5>Reportes <i class="glyphicon glyphicon-chevron-down"></i></h5>
           </a>
             <ul class="list-unstyled collapse" id="menu2">
-                <li><a title="Cerrar sesion" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a></li>
+                <li><a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a></li>
+            </ul>
+            <ul class="list-unstyled collapse" id="menu2">
+                <li><a title="Reporte general del sistema" data-toggle="modal" href="#GeneralModal"><span class="glyphicon glyphicon-plus"></span> General</a></li>
             </ul>
         </li>
       </ul> 
@@ -202,7 +203,7 @@ Clinica Privada
             <div class="modal-body row">
               <div class="col-md-6">
                 <ul>
-                  <li><a href="{{ Route('configuraciones.index') }}" title="Caracteristicas del sistema">Editar caracteristicas del sistema</a></li>
+                  <li><a href="{{ Route('configuraciones.index') }}" title="Caracteristicas del sistema">Editar datos del sistema</a></li>
                 </ul>
               </div>
               <div class="col-md-6">
@@ -227,8 +228,47 @@ Clinica Privada
               <h4 class="modal-title">Opciones para facturas</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
-            <div class="modal-body">
-              <p>Add a widget stuff here..</p>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="{{ Route('facturas.index') }}" title="Todas las facturas emitidas por el sistema">Todas las facturas</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/facturas.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+      </div><!-- /.modal -->
+
+            <div class="modal" id="GeneralModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Reportes generales del sistema</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+            </div>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="#" title="Estado de ingresos">Grafica de ingresos</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/reportes.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>

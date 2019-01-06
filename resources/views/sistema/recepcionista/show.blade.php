@@ -1,5 +1,4 @@
 @extends('templates.dashboard-template')
-@section('title') Recepcionista, {{$recepcionista->firstname}} {{$recepcionista->lastname}} @endsection
 @section('content-dashboard')
 <div class="col-md-12">
 <h1>{{$recepcionista->firstname}} {{$recepcionista->lastname}}</h1>

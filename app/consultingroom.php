@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class consultingroom extends Model
 {
     protected $fillable = [
-        'location', 'doctor_id'
+        'location', 'number'
     ];
 
     public function doctor(){
-        return $this->belongsTo('App\doctor');
+        return $this->hasOne('App\doctor');
     }
 }

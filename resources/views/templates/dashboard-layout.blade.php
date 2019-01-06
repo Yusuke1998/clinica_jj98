@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('fullcalendar/fullcalendar.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('chosen/chosen.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('css/my.css')}}"/>
   </head>
 
@@ -19,7 +20,7 @@
         <div class="container">
           <div class="row">
             <div class="col-md-10">
-              <p class="text-muted">Clinica privada, sistema hecho para la materia de sistema 3 con la profesora Angela Lugo.</p>
+              {{-- aqui deberia ir algo, aun no se que poner --}}
             </div>
             <div class="col-md-2">
               @guest
@@ -62,7 +63,8 @@
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
           <a href="{{ URL('/') }}" class="navbar-brand d-flex align-items-center">
-            <strong>Clinica S.I.</strong>
+            <strong>{{ (App\config::find(1)->name)?App\config::find(1)->name:'Clinica' }}</strong>
+            {{-- <img src="{{ asset('img/logos').'/'.App\config::find(1)->logo }}" height="50" alt="Logo actual"> --}}
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

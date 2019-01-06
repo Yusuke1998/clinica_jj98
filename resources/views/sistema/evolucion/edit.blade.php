@@ -1,7 +1,4 @@
 @extends('templates/dashboard-template')
-@section('title')
-Clinica Privada
-@endsection
 @section('content-dashboard')
 	<form action="{{route('evoluciones.update',$evolucion->id)}}" method="POST">
 	  @csrf

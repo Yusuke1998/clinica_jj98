@@ -1,7 +1,4 @@
 @extends('templates/dashboard-template')
-@section('title')
-Clinica Privada
-@endsection
 @section('content-dashboard')
 <div class="col-md-12">
 	<table id="example" class="display" style="width:100%">

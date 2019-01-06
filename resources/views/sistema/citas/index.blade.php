@@ -1,7 +1,4 @@
 @extends('templates/dashboard-template')
-@section('title')
-Clinica Privada
-@endsection
 @section('content-dashboard')
 <div class="col-md-12">
 	<table id="example" class="display" style="width:100%">
@@ -11,6 +8,7 @@ Clinica Privada
 				<th>Hora</th>
 				<th>Paciente</th>
 				<th>Doctor</th>
+				<th>Estatus</th>
 				<th>Accion</th>
 			</tr>
 		</thead>
@@ -23,12 +21,15 @@ Clinica Privada
 					<td>
 						{{$cita->calendar->start_time_on}}
 						{{($cita->calendar->start_time_on>12)?'pm':'am'}}
-					</td>
+					</td>					
 					<td>
 						{{$cita->patient->firstname}}&nbsp{{$cita->patient->lastname}}
 					</td>
 					<td>
 						{{$cita->doctor->firstname}}&nbsp{{$cita->doctor->lastname}}
+					</td>
+					<td>
+						{{$cita->status}}
 					</td>
 					<td>
 						<div class="btn-group">

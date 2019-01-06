@@ -1,7 +1,4 @@
 @extends('templates/dashboard-template')
-@section('title')
-Clinica Privada
-@endsection
 @section('content-dashboard')
 <form action="{{route('recepcionistas.update',$editarr->id)}}" method="POST">
 <input type="hidden" name="_method" value="PUT">

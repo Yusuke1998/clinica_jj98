@@ -17,7 +17,7 @@ class ConfigController extends Controller
 
     	if ($request->file('logo')) {
             $file = $request->file('logo');
-            $nameImage = 'logo_clinica'.time().'.'.$file->getClientOriginalExtension();
+            $nameImage = 'logo_clinica'.'.'.$file->getClientOriginalExtension();
             $path = public_path().'\img\logos';
             $file->move($path,$nameImage);
         }else{

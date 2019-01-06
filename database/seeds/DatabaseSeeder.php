@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigTableSeeder::class);
         $this->call(BloodTableSeeder::class);
         $this->call(DiseaseTableSeeder::class);
+        $this->call(SpecialtyTableSeeder::class);
         $this->call(EthnicTableSeeder::class);
     }
 }

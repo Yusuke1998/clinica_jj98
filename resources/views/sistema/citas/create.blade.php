@@ -1,7 +1,4 @@
 @extends('templates/dashboard-template')
-@section('title')
-Clinica Privada
-@endsection
 @section('content-dashboard')
 <form action="{{route('citas.store')}}" method="POST">
   @csrf
@@ -9,19 +6,24 @@ Clinica Privada
   	<input type="hidden" name="user_id" value="{{ Auth::User()->id }}">
 
     <div class="col-md-6 form-group">
-      <label for="title">Titulo</label>
+      <label for="title">Razon</label>
       <input id="title" class="form-control" type="text" name="title">
     </div>
 
     <div class="col-md-6 form-group">
+      <label for="amountPaylable">Monto en Bs.S</label>
+      <input type="text" class="form-control" id="amountPaylable" name="amountPaylable" placeholder="Monto pagado">
+    </div>
+
+    <div class="col-md-4 form-group">
       <label for="start">Dia</label>
       <input id="start" class="form-control" type="date" name="start">
     </div>
-    <div class="col-md-6 form-group">
+    <div class="col-md-4 form-group">
       <label for="start_time_on">Hora de Inicio</label>
       <input id="start_time_on" class="form-control" type="time" name="start_time_on">
     </div>
-    <div class="col-md-6 form-group">
+    <div class="col-md-4 form-group">
       <label for="start_time_off">Hora de Finalizacion</label>
       <input id="start_time_off" class="form-control" type="time" name="start_time_off">
     </div>
@@ -47,7 +49,6 @@ Clinica Privada
       @endforelse
       </select>
     </div>
-
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary">Registrar</button>
