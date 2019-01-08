@@ -7,22 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class receptionist extends Model
 {
     protected $fillable = [
-        'firstname', 'lastname', 'ci'
+        'firstname', 'lastname', 'ci', 'user_id', 'telephone1', 'telephone2', 'address1', 'address2', 'email1', 'email2',
     ];
-
-    public function telephones(){
-        return $this->hasMany('App\telephone');
-    }
-
-    public function emails(){
-        return $this->hasMany('App\email');
-    }
-
-    public function addresses(){
-        return $this->hasMany('App\address');
-    }
 
     public function casefiles(){
         return $this->hasMany('App\casefile');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }

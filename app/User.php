@@ -11,11 +11,31 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'username', 'email', 'email', 'rol'
+        'username', 'email','rol','password'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'remember_token','password'
     ];
+
+    public function records(){
+        return $this->hasMany('App\casefile');
+    }
+
+    public function receptionist(){
+    	return $this->hasOne('App\receptionist');
+    }
+
+    public function doctor(){
+    	return $this->hasOne('App\doctor');
+    }
+
+    public function appointments(){
+        return $this->hasMany('App\appointment');
+    }
+
+    public function configs(){
+        return $this->hasMany('App\config');
+    }
 
 }

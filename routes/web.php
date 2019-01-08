@@ -1,38 +1,46 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('auth/register2');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Usuarios sin autenticacion
 
-Route::group(['prefix'	=>  'sistema'],function(){
+Route::get('/', 'Auth\LoginController@showLoginForm')->name('acceder');
 
-	Route::resource('/direccions','addresses');
-	Route::resource('/citas','quotes');
-	Route::resource('/facturas','invoices');
-	Route::resource('/expedientes','records');
-	Route::resource('/consultorios','doctorsoffices');
-	Route::resource('/medicos','doctors');
-	Route::resource('/correos','emails');
-	Route::resource('/evoluciones','evolutions');
+Route::get('sistema',function(){
+	return redirect('/');
+});
+
+// Usuarios autenticados
+
+Route::get('/registrar',function(){
+    return view('auth/register2');
+})->name('registrar')->middleware('auth');
+
+Route::get('/clinica', 'HomeController@index')->name('clinica');
+
+Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
+
+	Route::resource('/configuraciones','ConfigController');
+	// Pacintes
 	Route::resource('/pacientes','patients');
-	Route::resource('/consultas','queries');
+	Route::resource('/expedientes','records');
+	Route::resource('/evoluciones','evolutions');
+	Route::get('/{id}/evoluciones/','evolutions@nueva')->name('evoluciones.nueva');
+	Route::resource('/citas','quotes');
+
+	// recepcionistas
 	Route::resource('/recepcionistas','receptionists');
+	Route::resource('/facturas','invoices');
+	Route::resource('/calendario','calendaries');
+
+	// Medicos
+	Route::resource('/medicos','doctors');
 	Route::resource('/especialidades','specialties');
-	Route::resource('/telefonos','phones');
+	Route::resource('/consultorios','doctorsoffices');
+
+	// Usuarios
 	Route::resource('/usuarios','users');
+	Route::get('/crearD', 'users@createDoctor')->name('usuarios.createDoctor');
+	Route::get('/crearR', 'users@createReceptionist')->name('usuarios.createReceptionist');
+
 });

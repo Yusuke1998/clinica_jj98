@@ -1,96 +1,84 @@
 <?php
-
+// USUARIOS
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-// use App\Adress;
-// use App\Email;
-// use App\Telephone;
-
-
-// use App\User;
-
+use App\receptionist;
+use App\doctor;
 
 class users extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('administrador');
+    }
+
     public function index()
     {
         $usuarios = User::all();
         return view('sistema/usuario/index')->with('usuarios',$usuarios);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('sistema/usuario/create');
     }
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $user = new User;
         $user->username = $request->username;
         $user->email = $request->email;
         $user->rol = $request->rol;
-        $user->password = Hash::make($request->password);
+        $user->password = bcrypt($request->password);
         
-        ($user->save())?'':'Error al guardar';
+        $user->save();
 
-        return back();
+        return back()->with('info','Usuario creado con exito!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $editaru = User::find($id);
+        return view('sistema/usuario/edit')
+        ->with('editaru',$editaru);
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+        $usuario = User::find($id);
+        $usuario->username = $request->username;
+        $usuario->email = $request->email;
+        $usuario->password = $request->password;
+        $usuario->rol = $request->rol;
+        $usuario->update();
+
+        return back()->with('info','Usuario actualizado con exito!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $usuario = User::find($id);
+        // dd($usuario->doctor());
+
+        if ($usuario->doctor) {
+
+            $medico = doctor::where('user_id',$usuario->id);
+            $medico->delete();
+
+        }elseif ($usuario->receptionist) {
+
+            $recepcionista = receptionist::where('user_id',$usuario->id);
+            $recepcionista->delete();
+
+        }else{
+            $usuario->delete();
+        }
+
+        return back()->with('info','Usuario eliminado con exito!');
     }
 }

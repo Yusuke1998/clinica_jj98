@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateDoctorSpecialtiesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('doctor_specialties', function (Blueprint $table) {
@@ -26,11 +21,6 @@ class CreateDoctorSpecialtiesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('doctor_specialties');

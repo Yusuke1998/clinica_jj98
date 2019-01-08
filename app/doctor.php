@@ -7,20 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class doctor extends Model
 {
     protected $fillable = [
-        'firstname', 'lastname', 'ci'
+        'firstname', 'lastname', 'ci', 'user_id', 'telephone1', 'telephone2', 'address1', 'address2', 'email1', 'email2','consultingroom_id'
     ];
-
-    public function telephones(){
-        return $this->hasMany('App\Telephone');
-    }
-
-    public function emails(){
-        return $this->hasMany('App\Email');
-    }
-
-    public function addresses(){
-        return $this->hasMany('App\Address');
-    }
 
     public function specialties(){
         return $this->belongsToMany('App\specialty','doctor_specialties');
@@ -34,8 +22,16 @@ class doctor extends Model
         return $this->belongsTo('App\consultingroom');
     }
 
-    /*public function query(){
-        return $this->belongsTo('App\query','doctor_id','id');
-    }*/
+    public function aquery(){
+        return $this->hasOne('App\query');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function appointment(){
+        return $this->hasMany('App\appointment');
+    }
 
 }

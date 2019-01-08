@@ -6,31 +6,26 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateEvolutionsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('evolutions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('symptom');
-            $table->string('treatment');
-            $table->string('disease');
-            $table->integer('casefile_id')->unsigned();
+            $table->text('symptom');
+            $table->text('treatment');
 
-            $table->foreign('casefile_id')->references('id')->on('casefiles');
+            $table->integer('user_id')->unsigned();
+            $table->integer('casefile_id')->unsigned();
+            $table->integer('disease_id')->unsigned();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('casefile_id')->references('id')->on('casefiles')->onDelete('cascade');
+            $table->foreign('disease_id')->references('id')->on('diseases')->onDelete('cascade');
+
             
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('evolutions');
