@@ -20,7 +20,7 @@
   		<input name="telephone1" id="telephone1" class="form-control" type="tel" required>
   	</div>
   	<div class="form-group col-md-6">
-  		<label for="telephone2">Telefono(2)</label>
+  		<label for="telephone2">Telefono 2</label>
   		<input placeholder="(Opcional)" name="telephone2" id="telephone2" class="form-control" type="tel">
   	</div>
   	<div class="form-group col-md-6">
@@ -28,7 +28,7 @@
   		<input required id="address1" class="form-control" type="text" name="address1">
   	</div>
   	<div class="form-group col-md-6">
-  		<label for="address2">Direccion(2)</label>
+  		<label for="address2">Direccion 2</label>
   		<input placeholder="(Opcional)" id="address2" class="form-control" type="text" name="address2">
   	</div>
   	<div class="form-group col-md-6">
@@ -37,7 +37,7 @@
   	</div>
   	<div class="form-group col-md-6">
   		<label for="email2">Correo Electronico 2</label>
-  		<input required name="email2" id="email2" class="form-control" type="email">
+  		<input name="email2" id="email2" class="form-control" type="email">
   	</div>
   	<div class="form-group col-md-6">
   		<label for="username">Nombre de Usuario</label>

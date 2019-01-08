@@ -7,6 +7,11 @@ use App\consultingroom;
 
 class doctorsoffices extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('medico');
+    }
+
     public function index()
     {
         $consultorios = consultingroom::all();

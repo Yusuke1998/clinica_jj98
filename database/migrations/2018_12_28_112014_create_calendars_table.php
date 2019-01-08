@@ -17,6 +17,7 @@ class CreateCalendarsTable extends Migration
             $table->string('url')->nullable();
             $table->string('start_time_on')->nullable();
             $table->string('start_time_off')->nullable();
+            $table->string('date')->nullable();
             $table->integer('appointment_id')->unsigned()->nullable();
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');
             $table->timestamps();

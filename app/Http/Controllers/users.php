@@ -25,16 +25,6 @@ class users extends Controller
         return view('sistema/usuario/create');
     }
 
-    public function createReceptionist()
-    {
-        //
-    }
-
-    public function createDoctor()
-    {
-        //
-    }
-
     public function store(Request $request)
     {
         // dd($request);

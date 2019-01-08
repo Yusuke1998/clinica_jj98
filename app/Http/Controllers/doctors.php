@@ -20,7 +20,9 @@ class doctors extends Controller
 {
     public function __construct()
     {
+        // $this->middleware('administrador');
         $this->middleware('medico');
+        // $this->middleware('recepcionista');
     }
 
     public function index()

@@ -17,6 +17,11 @@ use App\User;
 
 class patients extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $pacientes = patient::all();

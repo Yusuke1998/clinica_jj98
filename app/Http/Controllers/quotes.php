@@ -11,6 +11,11 @@ use App\bill;
 
 class quotes extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $citas = appointment::all();
@@ -52,6 +57,7 @@ class quotes extends Controller
         $calendario->url = URL('/sistema/citas/').'/'.$cita->id;
         $calendario->start_time_on = $request->start_time_on;
         $calendario->start_time_off = $request->start_time_off;
+        $calendario->date = $request->start;
         $calendario->appointment_id = $cita->id;
         $calendario->save();
 
@@ -114,6 +120,7 @@ class quotes extends Controller
             'end'               =>  $end,
             'start_time_on'     =>  $request->start_time_on,
             'start_time_off'    =>  $request->start_time_off,
+            'date'              =>  $start,
             'color'             =>  $color,
         ]);
 

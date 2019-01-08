@@ -10,6 +10,11 @@ use App\bloodType;
 use App\disease;
 class records extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('medico');
+    }
+
     public function index()
     {
         $expedientes = casefile::all();

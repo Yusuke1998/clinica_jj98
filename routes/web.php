@@ -10,14 +10,13 @@ Route::get('sistema',function(){
 	return redirect('/');
 });
 
-
 // Usuarios autenticados
 
 Route::get('/registrar',function(){
     return view('auth/register2');
 })->name('registrar')->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/clinica', 'HomeController@index')->name('clinica');
 
 Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 

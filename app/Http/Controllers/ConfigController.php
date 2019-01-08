@@ -7,6 +7,11 @@ use App\config;
 
 class ConfigController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('administrador');
+    }
+    
     public function index(){
     	$configuracion = config::all();
     	return view('sistema.configuracion.index')

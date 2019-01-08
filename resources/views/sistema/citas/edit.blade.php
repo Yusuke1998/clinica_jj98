@@ -18,7 +18,7 @@
 
     <div class="col-md-4 form-group">
       <label for="start">Dia</label>
-      <input id="start" class="form-control" value="{{ str_replace('T'.$cita->calendar->start_time_on, '', $cita->calendar->start) }}" type="date" name="start">
+      <input id="start" class="form-control" value="{{ $cita->calendar->date }}" type="date" name="start">
     </div>
 
     <div class="col-md-4 form-group">

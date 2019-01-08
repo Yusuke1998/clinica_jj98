@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class invoices extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $facturas = bill::all();

@@ -20,7 +20,7 @@ class LoginController extends Controller
             return $this->redirectTo();
         }
 
-        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/clinica';
         // modificar
     }
 
@@ -29,7 +29,7 @@ class LoginController extends Controller
         return 'username';
     }
     
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/clinica';
 
     public function __construct()
     {

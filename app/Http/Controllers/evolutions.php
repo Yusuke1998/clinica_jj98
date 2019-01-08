@@ -11,6 +11,11 @@ use App\disease;
 
 class evolutions extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('medico');
+    }
+
     public function index()
     {
         $evoluciones = evolution::all();

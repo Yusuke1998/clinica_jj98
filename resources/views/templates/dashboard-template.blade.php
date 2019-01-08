@@ -11,19 +11,21 @@
           <h5>Opciones <i class="glyphicon glyphicon-chevron-down"></i></h5>
           </a>
             <ul style="height: auto;" class="list-unstyled in" id="userMenu">
-
+              @if(Auth::user()->rol=="admin")
                 <li><a title="Usuarios" data-toggle="modal" href="#UsuariosModal"><span class="glyphicon glyphicon-user"></span> Usuarios</a></li>
-
+              @endif
+              @if(Auth::user()->rol=="admin" || Auth::user()->rol=="doctor")
                 <li><a title="Medicos" data-toggle="modal" href="#MedicosModal"><span class="glyphicon glyphicon-plus-sign"></span> Medicos</a></li>
-
+              @endif
+              @if(Auth::user()->rol=="admin" || Auth::user()->rol=="receptionist")
                 <li><a title="Recepcionistas" data-toggle="modal" href="#RecepcionistasModal"><span class="glyphicon glyphicon-plus-sign"></span> Recepcionistas</a></li>
-
+              @endif
                 <li><a title="Pacientes" data-toggle="modal" href="#PacientesModal"><span class="glyphicon glyphicon-plus-sign"></span> Pacientes</a></li>
 
                 <li><a title="Calendario" data-toggle="modal" href="#CalendarioModal"><span class="glyphicon glyphicon-plus-sign"></span> Citas</a></li>
-
+              @if(Auth::user()->rol=="admin")
                 <li><a title="Opciones" data-toggle="modal" href="#OpcionesModal"><span class="glyphicon glyphicon-plus-sign"></span> Opciones</a></li>
-
+              @endif
                 <li>
                   <a style="width: 100px;" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <span class="glyphicon glyphicon-off"></span> Cerrar sesion
@@ -39,9 +41,11 @@
             <ul class="list-unstyled collapse" id="menu2">
                 <li><a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a></li>
             </ul>
+          @if(Auth::user()->rol=="admin")
             <ul class="list-unstyled collapse" id="menu2">
                 <li><a title="Reporte general del sistema" data-toggle="modal" href="#GeneralModal"><span class="glyphicon glyphicon-plus"></span> General</a></li>
             </ul>
+          @endif
         </li>
       </ul> 
       <hr>    

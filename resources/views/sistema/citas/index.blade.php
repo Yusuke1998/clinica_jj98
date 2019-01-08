@@ -16,7 +16,7 @@
 			@foreach($citas as $cita)
 				<tr>
 					<td>
-						{{str_replace('T'.$cita->calendar->start_time_on, '', $cita->calendar->start)}}
+						{{ $cita->calendar->date}}
 					</td>
 					<td>
 						{{$cita->calendar->start_time_on}}

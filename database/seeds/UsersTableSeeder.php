@@ -29,13 +29,14 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $medico = doctor::create([
-	        'firstname' => 'Jose (ejemplo)',
-	        'lastname' 	=> 'Perez',
-	        'ci' 		=> '12345678',
-	        'telephone1'=> '12345678',
-	        'email1' 	=> $doctor->email,
-	        'address1'	=> 'Villa de cura - edo. Aragua',
-	        'user_id' 	=> $doctor->id,
+	        'firstname'         => 'Jose (ejemplo)',
+	        'lastname' 	        => 'Perez',
+	        'ci' 		        => '12345678',
+	        'telephone1'        => '12345678',
+	        'email1' 	        => $doctor->email,
+	        'address1'	        => 'Villa de cura - edo. Aragua',
+	        'user_id' 	        => $doctor->id,
+            'consultingroom_id' =>  '1',
         ]);
 
         // RECEPCIONISTA

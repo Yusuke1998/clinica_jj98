@@ -18,7 +18,7 @@
 
     <div class="col-md-4 form-group">
       <label class="form-control text-center" for="start">Dia</label>
-      <input id="start" class="form-control" value="{{ str_replace('T'.$cita->calendar->start_time_on, '', $cita->calendar->start) }}" type="date" disabled>
+      <input id="start" class="form-control" value="{{ $cita->calendar->date }}" type="date" disabled>
     </div>
 
     <div class="col-md-4 form-group">
@@ -43,7 +43,7 @@
 
     <div class="col-md-6 form-group">
       <label class="form-control text-center" for="consultingroom">Consultorio</label>
-      <input type="text" class="form-control" id="consultingroom" value="{{ ($cita->doctor->consultingroom)?$cita->doctor->consultingroom->location:'No especificado!' }}" disabled>
+      <input type="text" class="form-control" id="consultingroom" value="{{ ($cita->doctor->consultingroom)?$cita->doctor->consultingroom->number:'No especificado!' }}" disabled>
     </div>
     <div class="col-md-6 form-group">
       <label class="form-control text-center" for="status">Estatus de cita</label>

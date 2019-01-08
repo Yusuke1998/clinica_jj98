@@ -7,6 +7,11 @@ use App\specialty;
 
 class specialties extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('medico');
+    }
+
     public function index()
     {
         $especialidades = specialty::all();
