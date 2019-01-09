@@ -52,6 +52,8 @@
     </div>
     <!-- /col-3 -->
     <div class="col-md-9">
+      @include('layouts.status')
+
       @yield('content-dashboard')
     </div>
       <div class="modal" id="UsuariosModal">

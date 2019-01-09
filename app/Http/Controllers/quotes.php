@@ -135,7 +135,10 @@ class quotes extends Controller
             'amountPaylable' => $request->amountPaylable
         ]);
 
-        return back()->with('info','Cita actualizada con exito!');
+        $factura     = bill::where('appointment_id',$id)->get();
+        $factura_id = $factura[0]->id;
+
+        return redirect(Route('citas.show',$factura_id))->with('info','Cita actualizada con exito!');
     }
 
     public function destroy($id)

@@ -40,6 +40,6 @@ class ConfigController extends Controller
         $configuracion->user_id = $request->user_id;
         $configuracion->save();
 
-    	return back();
+    	return back()->with('info','Configuracion actualizada con exito!');
     }
 }

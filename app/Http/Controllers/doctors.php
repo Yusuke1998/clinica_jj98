@@ -65,7 +65,7 @@ class doctors extends Controller
 
         $medico->specialties()->sync($request->specialty_id);
 
-        return back()->with('info','Medico creado con exito!');
+        return redirect(Route('medicos.index'))->with('info','Medico creado con exito!');
     }
 
     public function show($id){
@@ -113,7 +113,7 @@ class doctors extends Controller
         $medico->delete();
         $usuario->delete();
 
-        return back()->with('info','Medico eliminado con exito!');
+        return redirect(Route('medicos.index'))->with('info','Medico eliminado con exito!');
     }
 
     public function delete($id)
@@ -123,6 +123,6 @@ class doctors extends Controller
         $medico->delete();
         $usuario->delete();
 
-        return back()->with('info','Medico eliminado con exito!');
+        return redirect(Route('medicos.index'))->with('info','Medico eliminado con exito!');
     }
 }

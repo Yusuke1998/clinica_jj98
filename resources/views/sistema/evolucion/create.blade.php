@@ -5,7 +5,7 @@
   <div class="row">
   	<input type="hidden" name="user_id" value="{{ Auth::User()->id }}">
     <div class="col-md-12 form-group">
-      <select class="form-control" name="casefile_id">
+      <select class="form-control my_select_box" name="casefile_id">
         @forelse($expedientes as $expediente)
           <option value="{{ $expediente->id }}">Expediente de: {{ $expediente->patient->firstname }}&nbsp{{ $expediente->patient->lastname }}</option>
         @empty
@@ -26,7 +26,7 @@
     
     <div class="col-md-12 form-group">
       <label for="disease_id">Enfermedad Actual</label>
-      <select class="form-control" id="disease_id" name="disease_id">
+      <select class="form-control my_select_box" id="disease_id" name="disease_id">
         @forelse($enfermedades as $enfermedad)
           <option value="{{ $enfermedad->id }}">{{ $enfermedad->name }}</option>
         @empty

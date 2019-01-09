@@ -22,7 +22,7 @@
 	    
 	    <div class="col-md-12 form-group">
 	      <label for="disease_id">Enfermedad Actual</label>
-	      <select class="form-control" id="disease_id" name="disease_id">
+	      <select class="form-control my_select_box" id="disease_id" name="disease_id">
 	        @forelse($enfermedades as $enfermedad)
 	          <option value="{{ $enfermedad->id }}">{{ $enfermedad->name }}</option>
 	        @empty
@@ -32,7 +32,7 @@
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="submit" class="btn btn-primary">Registrar</button>
+	    <button type="submit" class="btn btn-primary">Actualizar</button>
 	  </div>
 	</form>
 @stop

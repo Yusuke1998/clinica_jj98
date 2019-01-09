@@ -47,7 +47,7 @@ class patients extends Controller
         'address1' => $request->address1,
         'address2' => $request->address2,
         ]);
-        return back()->with('info','Paciente creado con exito!');
+        return redirect(Route('pacientes.index'))->with('info','Paciente creado con exito!');
     }
 
     public function edit($id)
@@ -75,7 +75,7 @@ class patients extends Controller
         'address2' => $request->address2,
         ]);
 
-        return back()->with('info','Paciente actualizado con exito!');
+        return redirect(Route('pacientes.index'))->with('info','Paciente actualizado con exito!');
     }
 
     public function show($id){
@@ -89,7 +89,7 @@ class patients extends Controller
         $paciente = patient::find($id);
         $paciente->delete();
 
-        return back()->with('info','Paciente creado con exito!');
+        return redirect(Route('pacientes.index'))->with('info','Paciente creado con exito!');
     }
 
     public function delete($id)
@@ -97,6 +97,6 @@ class patients extends Controller
         $paciente = patient::find($id);
         $paciente->delete();
 
-        return back()->with('info','Paciente creado con exito!');
+        return redirect(Route('pacientes.index'))->with('info','Paciente creado con exito!');
     }
 }

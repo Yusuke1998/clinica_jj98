@@ -32,7 +32,7 @@
     
     <div class="col-md-4 form-group">
       <label for="currentCondition">Enfermedad Actual</label>
-      <select class="form-control" id="currentCondition" name="currentCondition_id">
+      <select class="form-control my_select_box" id="currentCondition" name="currentCondition_id">
         	<option selected value="{{ $expediente->currentCondition->id }}">{{ $expediente->currentCondition->name }}</option>
         @forelse($enfermedades as $enfermedad)
         	@if($enfermedad->id == $expediente->currentCondition->id)
@@ -47,7 +47,7 @@
 
     <div class="col-md-4 form-group">
       <label for="inheritedDisease_id">Enfermedad Heredada</label>
-      <select class="form-control" id="inheritedDisease_id" name="inheritedDisease_id">
+      <select class="form-control my_select_box" id="inheritedDisease_id" name="inheritedDisease_id">
           <option value="">Ninguna</option>
         	<option selected value="{{ $expediente->inheritedDisease->id }}">{{ $expediente->inheritedDisease->name }}</option>
         @forelse($enfermedades as $enfermedad)
@@ -63,7 +63,7 @@
 
     <div class="col-md-4 form-group">
       <label for="ethnicGroup">Grupo Etnico</label>
-      <select class="form-control" id="ethnicGroup" name="ethnic_group_id">
+      <select class="form-control my_select_box" id="ethnicGroup" name="ethnic_group_id">
           <option value="">Ninguno</option>
           <option selected value="{{ $expediente->ethnicgroup->id }}">{{ $expediente->ethnicgroup->name }}</option>
         @forelse($etnias as $etnia)
@@ -79,7 +79,7 @@
 
     <div class="col-md-4 form-group">
       <label for="bloodType">Tipo de sangre</label>
-      <select class="form-control" id="bloodType" name="blood_type_id">
+      <select class="form-control my_select_box" id="bloodType" name="blood_type_id">
         <option value="">Ninguno</option>
           <option selected value="{{ $expediente->bloodtype->id }}">{{ $expediente->bloodtype->name }}</option>
         @forelse($sangres as $sangre)

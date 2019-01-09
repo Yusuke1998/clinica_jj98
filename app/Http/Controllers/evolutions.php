@@ -50,7 +50,7 @@ class evolutions extends Controller
             'disease_id'    =>  $request->disease_id
         ]);
 
-        return back()->with('info','Evolucion creada con exito!');
+        return redirect(Route('evoluciones.index'))->with('info','Evolucion creada con exito!');
     }
 
     public function show($id)
@@ -72,20 +72,20 @@ class evolutions extends Controller
     {
         $evolucion = evolution::find($id);
         $evolucion->update($request->all());
-        return back()->with('info','Evolucion actualizada con exito!');
+        return redirect(Route('evoluciones.index'))->with('info','Evolucion actualizada con exito!');
     }
 
     public function destroy($id)
     {
         $evolucion = evolution::find($id);
         $evolucion->delete();
-        return back()->with('info','Evolucion eliminada con exito!');
+        return redirect(Route('evoluciones.index'))->with('info','Evolucion eliminada con exito!');
     }
 
     public function delete($id)
     {
         $evolucion = evolution::find($id);
         $evolucion->delete();
-        return back()->with('info','Evolucion eliminada con exito!');
+        return redirect(Route('evoluciones.index'))->with('info','Evolucion eliminada con exito!');
     }
 }
