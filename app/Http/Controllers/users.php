@@ -81,4 +81,26 @@ class users extends Controller
 
         return back()->with('info','Usuario eliminado con exito!');
     }
+
+    public function delete($id)
+    {
+        $usuario = User::find($id);
+        // dd($usuario->doctor());
+
+        if ($usuario->doctor) {
+
+            $medico = doctor::where('user_id',$usuario->id);
+            $medico->delete();
+
+        }elseif ($usuario->receptionist) {
+
+            $recepcionista = receptionist::where('user_id',$usuario->id);
+            $recepcionista->delete();
+
+        }else{
+            $usuario->delete();
+        }
+
+        return back()->with('info','Usuario eliminado con exito!');
+    }
 }

@@ -87,9 +87,15 @@ class patients extends Controller
     public function destroy($id)
     {
         $paciente = patient::find($id);
-        // $usuario = User::find($paciente->user_id);
         $paciente->delete();
-        // $usuario->delete();
+
+        return back()->with('info','Paciente creado con exito!');
+    }
+
+    public function delete($id)
+    {
+        $paciente = patient::find($id);
+        $paciente->delete();
 
         return back()->with('info','Paciente creado con exito!');
     }

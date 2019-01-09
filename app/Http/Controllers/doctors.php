@@ -20,9 +20,7 @@ class doctors extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('administrador');
         $this->middleware('medico');
-        // $this->middleware('recepcionista');
     }
 
     public function index()
@@ -77,9 +75,14 @@ class doctors extends Controller
 
     public function edit($id)
     {
+        $d_e = doctor::find($id)->specialties->pluck('id')->toArray();
+        $especialidades = specialty::all();
         $editard = doctor::find($id);
+        $consultorios   = consultingroom::all();
 
         return view('sistema/medico/edit')
+        ->with('consultorios',$consultorios)
+        ->with('especialidades',$especialidades)
         ->with('editard',$editard);
     }
 
@@ -100,14 +103,20 @@ class doctors extends Controller
         ]);
         
         $medico->specialties()->sync($request->specialty_id);
-        // $image->article()->associate($article);
-        // $article->tags()->sync($request->tags);
-
-
-        return back()->with('info','Medico actualizado con exito!');
+        return redirect(Route('medicos.index'))->with('info','Medico actualizado con exito!');
     }
 
     public function destroy($id)
+    {
+        $medico = doctor::find($id);
+        $usuario = User::find($medico->user_id);
+        $medico->delete();
+        $usuario->delete();
+
+        return back()->with('info','Medico eliminado con exito!');
+    }
+
+    public function delete($id)
     {
         $medico = doctor::find($id);
         $usuario = User::find($medico->user_id);

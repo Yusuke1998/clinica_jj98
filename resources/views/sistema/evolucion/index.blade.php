@@ -24,16 +24,11 @@
 
 					<td>{{($evolucion->created_at)?$evolucion->created_at->diffForHumans():'No hay registro...'}}</td>
 					<td>
-					<div class="btn-group">
-						<a class="btn btn-warning btn-sm" href="{{route('evoluciones.show',$evolucion->id)}}">Ver</a>
-						<a class="btn btn-success btn-sm" href="{{route('evoluciones.edit',$evolucion->id)}}">Editar</a>
-						
-						<form action="{{route('evoluciones.destroy',$evolucion->id)}}" method="post">
-							@csrf
-							<input type="hidden" name="_method" value="DELETE">
-							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-						</form>
-					</div>
+						<a title="Ver" href="{{route('evoluciones.show',$evolucion->id)}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+
+						<a title="Editar" href="{{route('evoluciones.edit',$evolucion->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+
+						<a title="Eliminar" href="{{route('evoluciones.delete',$evolucion->id)}}"><span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>
 			@endforeach

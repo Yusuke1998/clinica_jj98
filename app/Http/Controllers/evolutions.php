@@ -81,4 +81,11 @@ class evolutions extends Controller
         $evolucion->delete();
         return back()->with('info','Evolucion eliminada con exito!');
     }
+
+    public function delete($id)
+    {
+        $evolucion = evolution::find($id);
+        $evolucion->delete();
+        return back()->with('info','Evolucion eliminada con exito!');
+    }
 }

@@ -120,7 +120,7 @@ class quotes extends Controller
             'end'               =>  $end,
             'start_time_on'     =>  $request->start_time_on,
             'start_time_off'    =>  $request->start_time_off,
-            'date'              =>  $start,
+            'date'              =>  $request->start,
             'color'             =>  $color,
         ]);
 
@@ -139,6 +139,12 @@ class quotes extends Controller
     }
 
     public function destroy($id)
+    {
+        $cita = appointment::find($id)->delete();
+        return back()->with('info','Cita eliminada con exito!');
+    }
+
+    public function delete($id)
     {
         $cita = appointment::find($id)->delete();
         return back()->with('info','Cita eliminada con exito!');

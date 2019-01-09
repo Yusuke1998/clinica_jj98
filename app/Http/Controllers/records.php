@@ -81,4 +81,10 @@ class records extends Controller
         $expediente = casefile::find($id)->delete();
         return back()->with('info','Expediente eliminado con exito!');
     }
+
+    public function delete($id)
+    {
+        $expediente = casefile::find($id)->delete();
+        return back()->with('info','Expediente eliminado con exito!');
+    }
 }
