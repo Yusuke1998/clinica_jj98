@@ -14,7 +14,7 @@
 		<label class="form-control">Telefono: {{ $configuracion->telephone }}</label>
 	</div>
 	<div class="col-md-4">
-		<label class="form-control">Clinica: {{ $configuracion->name }}</label>
+		<label class="form-control">Nombre: {{ $configuracion->name }}</label>
 	</div>
 	<div class="col-md-12">
 		<label class="form-control text-center">Dirección: {{ $configuracion->address }}</label>
@@ -47,20 +47,11 @@
 	<div class="col-md-6">
 		<label class="form-control">Hora: {{ $factura->appointment->calendar->start_time_on }}&nbsp{{ ($factura->appointment->calendar->start_time_on <='12')?'am':'pm' }}</label>
 	</div>
-
-
-
-
-
-
-
-
-
     <div class="col-md-12">
-		<a href="#" target="_blank" class="btn btn-warning"><i class="glyphicon glyphicon-print"></i> Imprimir</a>
+		<a href="{{ Route('factura.pdf',$factura->id) }}" target="_blank" class="btn btn-warning pull-right"><i class="glyphicon glyphicon-print"></i> Imprimir</a>
 
-		<a href="#" class="btn btn-primary pull-right" style="margin-right: 5px;">
-		<i class="glyphicon glyphicon-download"></i> PDF
+		{{-- <a href="#" class="btn btn-primary pull-right" style="margin-right: 5px;"> --}}
+		{{-- <i class="glyphicon glyphicon-download"></i> PDF --}}
 		</a>
     </div>
 </div>

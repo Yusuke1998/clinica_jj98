@@ -12,6 +12,7 @@ Route::get('sistema',function(){
 
 // Usuarios autenticados
 
+
 Route::get('/registrar',function(){
     return view('auth/register2');
 })->name('registrar')->middleware('auth');
@@ -42,6 +43,7 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 
 	Route::resource('/facturas','invoices');
 	Route::get('/facturas/{factura}/delete','invoices@delete')->name('facturas.delete');
+	Route::get('/factura/pdf/{id}','invoices@pdf')->name('factura.pdf');
 
 	Route::resource('/calendario','calendaries');
 
