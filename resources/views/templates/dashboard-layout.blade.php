@@ -19,8 +19,13 @@
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
-            <div class="col-md-10">
-              {{-- aqui deberia ir algo, aun no se que poner --}}
+            <div class="col-md-10 text-white">
+                <br>
+                <p>Sistema administrativo para clinicas privada, posee funcionalidades como control de citas, pacientes, expedientes, facturas, etc.</p>
+                <small>Hecho con el framework laravel.</small>
+                <li>Asignatura: Sistema 3</li>
+                <li>Profesora: Angela Lugo</li>
+                <li>Estudiantes: Jhonny Pérez; Miguel Leon;</li>
             </div>
             <div class="col-md-2">
               @guest
@@ -62,10 +67,10 @@
       </div>
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
-          <a href="{{ URL('/') }}" class="navbar-brand d-flex align-items-center">
-            <strong>{{ (App\config::find(1)->name)?App\config::find(1)->name:'Clinica' }}</strong>
-            {{-- <img src="{{ asset('img/logos').'/'.App\config::find(1)->logo }}" height="50" alt="Logo actual"> --}}
-          </a>
+            <a href="{{ URL('/') }}" style="background-color: #fff; padding: 0px 10px; border-radius: 5%;" title="">
+              <img src="{{ asset('img/logos').'/'.App\config::find(1)->logo }}" height="50" alt="{{ (App\config::find(1)->name)?App\config::find(1)->name:'Clinica' }}">
+            </a>
+            {{-- <a href="{{ URL('/') }}" class="navbar-brand d-flex align-items-center">CLINICA</a> --}}
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

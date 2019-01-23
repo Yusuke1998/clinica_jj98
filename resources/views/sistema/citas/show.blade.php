@@ -49,7 +49,10 @@
       <label class="form-control text-center" for="status">Estatus de cita</label>
       <input type="text" class="form-control" id="status" value="{{ ($cita->status)?$cita->status:'No especificado!' }}" disabled>
     </div>
-
+    <div class="col-md-12">
+      <a href="{{ Route('facturas.show',$cita->bill->id) }}" target="_blank" class="btn btn-info pull-right"><i class="glyphicon glyphicon-eye-open"></i> Factura</a>
+      </a>
+    </div>
 
   </div>
 </form>

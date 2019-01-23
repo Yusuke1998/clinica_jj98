@@ -23,6 +23,8 @@
 		<div class="center ancho">
 			<p>SENIAT</p>
 		</div>
+		<center><img border="false" src="img/logos/logo_clinica.png" width="300px" height="50px"></center>
+		<br>
 		<div class="left ancho">
 			<label>Rif: {{ $configuracion->rif }}</label>
 		</div>
@@ -61,6 +63,7 @@
 		<div class="left ancho">
 			<label>Hora: {{ $factura->appointment->calendar->start_time_on }} {{ ($factura->appointment->calendar->start_time_on <='12')?'am':'pm' }}</label>
 		</div>
+		<hr>
 	</div>
 </body>
 </html>

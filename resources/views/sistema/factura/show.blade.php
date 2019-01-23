@@ -1,11 +1,11 @@
 @extends('templates/dashboard-template')
 @section('content-dashboard')
-<div class="container row">
-	<div class="col-md-12">
-		<img src="{{ asset('img/logos/logo_clinica.png') }}">
-	</div>
+<div class="container row" style="background-color: #fff; padding: 2px;">
 	<div class="col-md-12">
 		<p class="text-center h6 pull-right">SENIAT</p>
+	</div>
+	<div class="col-md-12">
+		<center><img src="{{ asset('img/logos/logo_clinica.png') }}"></center>
 	</div>
 	<div class="col-md-4">
 		<label class="form-control">Rif: {{ $configuracion->rif }}</label>
@@ -49,9 +49,6 @@
 	</div>
     <div class="col-md-12">
 		<a href="{{ Route('factura.pdf',$factura->id) }}" target="_blank" class="btn btn-warning pull-right"><i class="glyphicon glyphicon-print"></i> Imprimir</a>
-
-		{{-- <a href="#" class="btn btn-primary pull-right" style="margin-right: 5px;"> --}}
-		{{-- <i class="glyphicon glyphicon-download"></i> PDF --}}
 		</a>
     </div>
 </div>
