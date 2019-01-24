@@ -39,19 +39,6 @@
 		</div>
 		<hr>
 		<div class="left ancho">
-			<label>Codigo: {{ $factura->code }}</label>
-		</div>
-		<div class="left ancho">
-			<label>Monto: {{ $factura->amountPaylable }} Bs.S</label>
-		</div>
-		<div class="left ancho">
-			<label>Paciente: {{ $factura->appointment->patient->firstname }} {{ $factura->appointment->patient->lastname }}</label>
-		</div>
-		<div class="left ancho">
-			<label>Medico: {{ $factura->appointment->doctor->firstname }} {{ $factura->appointment->doctor->lastname }}</label>
-		</div>
-		<hr>
-		<div class="left ancho">
 			<label>Razon: {{ $factura->appointment->calendar->title }}</label>
 		</div>
 		<div class="left ancho">
@@ -62,6 +49,25 @@
 		</div>
 		<div class="left ancho">
 			<label>Hora: {{ $factura->appointment->calendar->start_time_on }} {{ ($factura->appointment->calendar->start_time_on <='12')?'am':'pm' }}</label>
+		</div>
+		<div class="left ancho">
+			<label>Paciente: {{ $factura->appointment->patient->firstname }} {{ $factura->appointment->patient->lastname }}</label>
+		</div>
+		<div class="left ancho">
+			<label>Medico: {{ $factura->appointment->doctor->firstname }} {{ $factura->appointment->doctor->lastname }}</label>
+		</div>
+		<hr>
+		<div class="left ancho">
+			<label>Codigo: {{ $factura->code }}</label>
+		</div>
+		<div class="left ancho">
+			<label>IVA: {{ $configuracion->iva }}%</label>
+		</div>
+		<div class="left ancho">
+			<label>Sub Total: {{ $factura->amountPaylable }} Bs.S</label>
+		</div>
+		<div class="left ancho">
+			<label>Total: {{ $factura->total }} Bs.S</label>
 		</div>
 		<hr>
 	</div>

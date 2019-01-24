@@ -8,6 +8,7 @@ use App\calendar;
 use App\doctor;
 use App\patient;
 use App\bill;
+use App\config;
 
 class quotes extends Controller
 {
@@ -33,10 +34,10 @@ class quotes extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $cita = new appointment();
         $calendario = new calendar();
         $factura = new bill();
+        $configuracion = config::find(1);
 
         $cita->user_id = $request->user_id;
         $cita->patient_id = $request->patient_id;
@@ -44,7 +45,10 @@ class quotes extends Controller
         $cita->status = 'Pendiente';
         $cita->save();
 
+        $total = ($request->amountPaylable * 100)/$configuracion->iva;
+
         $factura->amountPaylable = $request->amountPaylable;
+        $factura->total = $total;
         $factura->code = 'CO'.time();
         $factura->appointment_id = $cita->id;
         $factura->user_id = \Auth::User()->id;
@@ -75,7 +79,6 @@ class quotes extends Controller
         $pacientes = patient::all();
         $medicos = doctor::all();
         $cita = appointment::find($id);
-        // dd($cita);
 
         return view('sistema.citas.edit')
             ->with('pacientes',$pacientes)

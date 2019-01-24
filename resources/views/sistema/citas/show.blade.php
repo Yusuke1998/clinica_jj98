@@ -13,7 +13,7 @@
 
     <div class="col-md-6 form-group">
       <label class="form-control text-center" for="amountPaylable">Monto pagado</label>
-      <input id="amountPaylable" class="form-control" value="{{ $cita->bill->amountPaylable }} Bs.S" type="text" disabled>
+      <input id="amountPaylable" class="form-control" value="{{ $cita->bill->total }} Bs.S" type="text" disabled>
     </div>
 
     <div class="col-md-4 form-group">
@@ -50,7 +50,7 @@
       <input type="text" class="form-control" id="status" value="{{ ($cita->status)?$cita->status:'No especificado!' }}" disabled>
     </div>
     <div class="col-md-12">
-      <a href="{{ Route('facturas.show',$cita->bill->id) }}" target="_blank" class="btn btn-info pull-right"><i class="glyphicon glyphicon-eye-open"></i> Factura</a>
+      <a href="{{ Route('facturas.show',$cita->bill->id) }}" class="btn btn-info pull-right"><i class="glyphicon glyphicon-eye-open"></i> Factura</a>
       </a>
     </div>
 

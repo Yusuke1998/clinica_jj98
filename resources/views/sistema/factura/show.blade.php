@@ -24,7 +24,13 @@
 		<label class="form-control">Codigo: {{ $factura->code }}</label>
 	</div>
 	<div class="col-md-6">
-		<label class="form-control">Total: {{ $factura->amountPaylable }}&nbspBs.S</label>
+		<label class="form-control">IVA: {{ $configuracion->iva }}%</label>
+	</div>
+	<div class="col-md-6">
+		<label class="form-control">Sub Total: {{ $factura->amountPaylable }}&nbspBs.S</label>
+	</div>
+	<div class="col-md-6">
+		<label class="form-control">Total: {{ $factura->total }}&nbspBs.S</label>
 	</div>
 	<div class="col-md-6">
 		<label class="form-control">Paciente: {{ $factura->appointment->patient->firstname }}&nbsp{{ $factura->appointment->patient->lastname }}</label>
