@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="form-group col-md-6">
-			<label>Iva</label>
+			<label>Iva (%)</label>
 			<input type="number" value="{{ ($configuracion[0]->iva)?$configuracion[0]->iva:'' }}" name="iva" class="form-control" placeholder="Iva">
 		</div>
 

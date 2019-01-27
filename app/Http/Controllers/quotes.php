@@ -45,7 +45,10 @@ class quotes extends Controller
         $cita->status = 'Pendiente';
         $cita->save();
 
-        $total = ($request->amountPaylable * 100)/$configuracion->iva;
+        $iva = $configuracion->iva;
+        $subtotal = $request->amountPaylable;
+        $calculo = ($subtotal*$iva)/100;
+        $total = $subtotal+$calculo;
 
         $factura->amountPaylable = $request->amountPaylable;
         $factura->total = $total;
@@ -90,9 +93,15 @@ class quotes extends Controller
     {
         $calendario  = calendar::where('appointment_id',$id);
         $factura     = bill::where('appointment_id',$id);
+        $configuracion = config::find(1);
 
         $start = $request->start.'T'.$request->start_time_on;
         $end = $request->start.'T'.$request->start_time_off;
+
+        $iva = $configuracion->iva;
+        $subtotal = $request->amountPaylable;
+        $calculo = ($subtotal*$iva)/100;
+        $total = $subtotal+$calculo;
         
         // Se asigna el color dependiendo del estatus de la cita
         switch ($request->status) {
@@ -135,7 +144,8 @@ class quotes extends Controller
         ]);
 
         $factura->update([
-            'amountPaylable' => $request->amountPaylable
+            'amountPaylable'    => $request->amountPaylable,
+            'total'             => $total,
         ]);
 
         $factura     = bill::where('appointment_id',$id)->get();
