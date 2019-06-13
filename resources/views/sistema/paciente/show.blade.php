@@ -48,6 +48,9 @@
 		/ {{$paciente->address2}}
 		@endif
 	</div>
+	<div class="col-md-12">
+		<a class="btn btn-info pull-right" href="{{route('evoluciones.nueva',$paciente->id)}}" title="Expediente">Ver expediente</a>
+	</div>
 </div>
 </div>
 @endsection

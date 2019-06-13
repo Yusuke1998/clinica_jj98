@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/graficas',function(){
+	return view('sistema.reportes.citas'); 
+});
+
 Auth::routes();
 
 // Usuarios sin autenticacion

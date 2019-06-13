@@ -41,11 +41,15 @@
             <ul class="list-unstyled collapse" id="menu2">
                 <li><a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a></li>
             </ul>
+          {{--
+           
           @if(Auth::user()->rol=="admin")
             <ul class="list-unstyled collapse" id="menu2">
                 <li><a title="Reporte general del sistema" data-toggle="modal" href="#GeneralModal"><span class="glyphicon glyphicon-plus"></span> General</a></li>
             </ul>
           @endif
+
+          --}}
         </li>
       </ul> 
       <hr>    
