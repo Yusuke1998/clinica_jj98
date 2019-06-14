@@ -1,5 +1,4 @@
 @extends('templates/dashboard-template')
-@endsection
 @section('content-dashboard')
 	<form action="{{route('evoluciones.store')}}" method="POST">
 	  @csrf

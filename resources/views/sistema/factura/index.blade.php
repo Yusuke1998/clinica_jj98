@@ -24,7 +24,7 @@
 					{{ $factura->appointment->doctor->firstname }}&nbsp{{ $factura->appointment->doctor->lastname }}
 				</td>
 				<td>{{ $factura->user->username }}</td>
-				<td>{{ $factura->created_at }}</td>
+				<td>{{ $factura->created_at->format('d-m-Y') }}</td>
 				<td>
 					<a title="Ver" href="{{route('facturas.show',$factura->id)}}"><span class="glyphicon glyphicon-eye-open"></span></a>
 				</td>

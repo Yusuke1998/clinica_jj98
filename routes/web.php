@@ -16,7 +16,6 @@ Route::get('sistema',function(){
 
 // Usuarios autenticados
 
-
 Route::get('/registrar',function(){
     return view('auth/register2');
 })->name('registrar')->middleware('auth');
@@ -33,11 +32,16 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 
 	Route::resource('/expedientes','records');
 	Route::get('/expedientes/{expediente}/delete','records@delete')->name('expedientes.delete');
+	Route::get('/expedientes/nueva/{id}','records@nueva')->name('expedientes.nueva');
+	Route::get('/expedientes/ver/{id}','records@ver')->name('expedientes.ver');
 
+	// Evoluciones
 	Route::resource('/evoluciones','evolutions');
 	Route::get('/evoluciones/{evolucion}/delete','evolutions@delete')->name('evoluciones.delete');
-	Route::get('/{id}/evoluciones/','evolutions@nueva')->name('evoluciones.nueva');
+	Route::get('/evoluciones/nueva/{id}','evolutions@nueva')->name('evoluciones.nueva');
+	Route::get('/evoluciones/ver/{id}','evolutions@show')->name('evoluciones.ver');
 
+	// Citas
 	Route::resource('/citas','quotes');
 	Route::get('/citas/{cita}/delete','quotes@delete')->name('citas.delete');
 
@@ -45,10 +49,12 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 	Route::resource('/recepcionistas','receptionists');
 	Route::get('/recepcionistas/{recepcionista}/delete','receptionists@delete')->name('recepcionistas.delete');
 
+	// Facturas
 	Route::resource('/facturas','invoices');
 	Route::get('/facturas/{factura}/delete','invoices@delete')->name('facturas.delete');
 	Route::get('/factura/pdf/{id}','invoices@pdf')->name('factura.pdf');
 
+	// Calendario
 	Route::resource('/calendario','calendaries');
 
 	// Medicos

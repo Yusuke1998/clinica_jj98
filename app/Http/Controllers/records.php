@@ -8,6 +8,8 @@ use App\patient;
 use App\ethnicGroup;
 use App\bloodType;
 use App\disease;
+use App\evolution;
+
 class records extends Controller
 {
     public function __construct()
@@ -55,7 +57,15 @@ class records extends Controller
     public function show($id)
     {
         $expediente = casefile::find($id);
-        return view('sistema/expediente/show')->with('expediente',$expediente);
+        // $evoluciones = evolution::where('casefile_id',$id)->first();
+        // $evoluciones = $expediente->evolutions;
+        return view('sistema/expediente/show',compact('expediente'));
+    }
+
+    public function ver($id)
+    {
+        $expediente = patient::where('id',$id)->first()->casefile;
+        return view('sistema/paciente/show_casefile')->with('expediente',$expediente);
     }
 
     public function edit($id)

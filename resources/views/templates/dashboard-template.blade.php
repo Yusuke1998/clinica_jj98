@@ -39,7 +39,24 @@
           <h5>Reportes <i class="glyphicon glyphicon-chevron-down"></i></h5>
           </a>
             <ul class="list-unstyled collapse" id="menu2">
-                <li><a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a></li>
+                <li>
+                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a>
+                </li>
+                <li>
+                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos los pacientes</a>
+                </li>
+                <li>
+                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos los doctores</a>
+                </li>
+                <li>
+                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos las recepcionistas</a>
+                </li>
+                <li>
+                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos los usuarios</a>
+                </li>
+                <li>
+                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Reporte de ingreso monetario</a>
+                </li>
             </ul>
           {{--
            
@@ -165,7 +182,6 @@
                   <li><a href="{{ Route('expedientes.create') }}" title="Crear expediente">Nuevo Expediente</a></li>
                   <li><a href="{{ Route('evoluciones.index') }}" title="Lista de evoluciones">Evoluciones</a></li>
                   <li><a href="{{ Route('evoluciones.create') }}" title="Crear evolucion">Nueva Evolucion de paciente</a></li>
-                  <li><a href="{{ Route('citas.create') }}" title="Crear cita">Nueva Cita</a></li>
                 </ul>
               </div>
               <div class="col-md-6">

@@ -37,8 +37,11 @@
 		</div>
 		<div class="col-md-12 btn-group">
 			<a class="btn btn-info pull-right" href="{{route('expedientes.edit',$expediente->id)}}" title="Editar expediente">Editar</a>
+
+
 			<a class="btn btn-success pull-right" href="#" title="Imprimir pdf">PDF</a>
 		</div>
+
 		<div class="col-md-12 text-center">
 			<p class="h3">Evoluciones del Paciente</p>
 			<table id="example" class=" table display" style="width:100%">

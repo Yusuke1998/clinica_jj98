@@ -49,6 +49,7 @@ class quotes extends Controller
         $subtotal = $request->amountPaylable;
         $calculo = ($subtotal*$iva)/100;
         $total = $subtotal+$calculo;
+        // dd($total);
 
         $factura->amountPaylable = $request->amountPaylable;
         $factura->total = $total;

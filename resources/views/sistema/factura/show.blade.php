@@ -48,7 +48,7 @@
 		<label class="form-control">Consultorio: {{ $factura->appointment->doctor->consultingroom->number }}</label>
 	</div>
 	<div class="col-md-6">
-		<label class="form-control">Dia: {{ $factura->appointment->calendar->date }}</label>
+		<label class="form-control">Dia: {{ date("d-m-Y", strtotime($factura->appointment->calendar->date)) }}</label>
 	</div>
 	<div class="col-md-6">
 		<label class="form-control">Hora: {{ $factura->appointment->calendar->start_time_on }}&nbsp{{ ($factura->appointment->calendar->start_time_on <='12')?'am':'pm' }}</label>

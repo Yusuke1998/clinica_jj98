@@ -6,9 +6,6 @@
 			<tr>
 				<th>Paciente</th>
 				<th>Enfermedad</th>
-				<th>Sintoma</th>
-				<th>Tratamiento</th>
-				<th>Usuario</th>
 				<th>Creado</th>
 				<th>Accion</th>
 			</tr>
@@ -18,10 +15,6 @@
 				<tr>
 					<td>{{$evolucion->casefile->patient->firstname}}&nbsp{{$evolucion->casefile->patient->lastname}}</td>
 					<td>{{$evolucion->disease->name}}</td>
-					<td>{{$evolucion->symptom}}</td>
-					<td>{{$evolucion->treatment}}</td>
-					<td>{{$evolucion->user->username}}</td>
-
 					<td>{{($evolucion->created_at)?$evolucion->created_at->diffForHumans():'No hay registro...'}}</td>
 					<td>
 						<a title="Ver" href="{{route('evoluciones.show',$evolucion->id)}}"><span class="glyphicon glyphicon-eye-open"></span></a>
