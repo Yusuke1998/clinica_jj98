@@ -24,12 +24,14 @@ Route::get('/clinica', 'HomeController@index')->name('clinica');
 
 Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 
+	// Configuraciones
 	Route::resource('/configuraciones','ConfigController');
 
 	// Pacintes
 	Route::resource('/pacientes','patients');
 	Route::get('/pacientes/{paciente}/delete','patients@delete')->name('pacientes.delete');
 
+	// Expedientes
 	Route::resource('/expedientes','records');
 	Route::get('/expedientes/{expediente}/delete','records@delete')->name('expedientes.delete');
 	Route::get('/expedientes/nueva/{id}','records@nueva')->name('expedientes.nueva');
@@ -67,7 +69,13 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 	Route::resource('/usuarios','users');
 	Route::get('/usuarios/{usuario}/delete','users@delete')->name('usuarios.delete');
 
-	// Route::get('/crearD', 'users@createDoctor')->name('usuarios.createDoctor');
-	// Route::get('/crearR', 'users@createReceptionist')->name('usuarios.createReceptionist');
+	// reportes PDF
+	Route::group(['prefix' => 'reportes'],function(){
+		Route::get('usuarios/{tipo}','reports@usuarios')->name('usuarios.pdf');
+		Route::get('pacientes/{tipo}','reports@pacientes')->name('pacientes.pdf');
+		Route::get('medicos/{tipo}','reports@medicos')->name('medicos.pdf');
+		Route::get('recepcionistas/{tipo}','reports@recepcionistas')->name('recepcionistas.pdf');
+		Route::get('citas/{tipo}','reports@citas')->name('citas.pdf');
+	});
 
 });

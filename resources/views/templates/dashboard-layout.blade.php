@@ -25,7 +25,7 @@
                 <small>Hecho con el framework laravel.</small>
                 <li>Asignatura: Sistema 3</li>
                 <li>Profesora: Angela Lugo</li>
-                <li>Estudiantes: Jhonny Pérez; Miguel Leon;</li>
+                <li>Estudiante: Jhonny Pérez;</li>
             </div>
             <div class="col-md-2">
               @guest
@@ -88,7 +88,7 @@
     </main>
     <footer class="text-muted">
       <div class="container">
-        <p>clinica-by_Jhonny_prz!</p>
+        <p>clinica_jj98-by_Jhonny_prz!</p>
       </div>
     </footer>
     @extends('layouts.script')

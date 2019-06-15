@@ -37,36 +37,14 @@
         <hr>
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
           <h5>Reportes <i class="glyphicon glyphicon-chevron-down"></i></h5>
-          </a>
-            <ul class="list-unstyled collapse" id="menu2">
-                <li>
-                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a>
-                </li>
-                <li>
-                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos los pacientes</a>
-                </li>
-                <li>
-                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos los doctores</a>
-                </li>
-                <li>
-                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos las recepcionistas</a>
-                </li>
-                <li>
-                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Todos los usuarios</a>
-                </li>
-                <li>
-                  <a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Reporte de ingreso monetario</a>
-                </li>
-            </ul>
-          {{--
-           
+          </a>       
           @if(Auth::user()->rol=="admin")
             <ul class="list-unstyled collapse" id="menu2">
                 <li><a title="Reporte general del sistema" data-toggle="modal" href="#GeneralModal"><span class="glyphicon glyphicon-plus"></span> General</a></li>
             </ul>
           @endif
 
-          --}}
+          
         </li>
       </ul> 
       <hr>    
@@ -294,9 +272,11 @@
             <div class="modal-body row">
               <div class="col-md-6">
                 <ul>
-                  <li><a href="#" title="Estado de ingresos">Ingresos</a></li>
-                  <li><a href="#" title="Estado de citas">Citas</a></li>
-                  <li><a href="#" title="Estado de pacientes">Pacientes</a></li>
+                  <li><a href="#" title="PDF de ingresos">Ingresos</a></li>
+                  <li><a href="#" title="PDF de citas">Citas</a></li>
+                  <li><a href="#" title="PDF de pacientes">Pacientes</a></li>
+                  <li><a href="#" title="PDF de doctores">Doctores</a></li>
+                  <li><a href="#" title="PDF de recepcionistas">Recepcionistas</a></li>
                 </ul>
               </div>
               <div class="col-md-6">
