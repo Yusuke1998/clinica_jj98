@@ -21,7 +21,6 @@ class reports extends Controller
         $this->middleware('auth');
     }
 
-
     public function usuarios($tipo){
         $configuracion = config::first();
         switch ($tipo) {

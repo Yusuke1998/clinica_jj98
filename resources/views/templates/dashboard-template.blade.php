@@ -262,8 +262,8 @@
         </div><!-- /.modal-dalog -->
       </div><!-- /.modal -->
 
-            <div class="modal" id="GeneralModal">
-        <div class="modal-dialog">
+      <div class="modal" id="GeneralModal">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Reportes generales del sistema</h4>
@@ -271,12 +271,109 @@
             </div>
             <div class="modal-body row">
               <div class="col-md-6">
-                <ul>
-                  <li><a href="#" title="PDF de ingresos">Ingresos</a></li>
-                  <li><a href="#" title="PDF de citas">Citas</a></li>
-                  <li><a href="#" title="PDF de pacientes">Pacientes</a></li>
-                  <li><a href="#" title="PDF de doctores">Doctores</a></li>
-                  <li><a href="#" title="PDF de recepcionistas">Recepcionistas</a></li>
+                <ul style="list-style: none;">
+                  <li>
+                    <a href="{{ route('ingresos.pdf','todo') }}" title="PDF de ingresos">Ingresos</a>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a href="{{ route('ingresos.pdf','dia') }}" title="">DIA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('ingresos.pdf','semana') }}" title="">SEMANA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('ingresos.pdf','mes') }}" title="">MES</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('ingresos.pdf','año') }}" title="">AÑO</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="{{ route('citas.pdf','todo') }}" title="PDF de citas">Citas</a>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a href="{{ route('citas.pdf','dia') }}" title="">DIA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('citas.pdf','semana') }}" title="">SEMANA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('citas.pdf','mes') }}" title="">MES</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('citas.pdf','año') }}" title="">AÑO</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="{{ route('medicos.pdf','todo') }}" title="PDF de medicos">Medicos</a>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a href="{{ route('medicos.pdf','dia') }}" title="">DIA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('medicos.pdf','semana') }}" title="">SEMANA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('medicos.pdf','mes') }}" title="">MES</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('medicos.pdf','año') }}" title="">AÑO</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="{{ route('recepcionistas.pdf','todo') }}" title="PDF de recepcionistas">Recepcionistas</a>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a href="{{ route('recepcionistas.pdf','dia') }}" title="">DIA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('recepcionistas.pdf','semana') }}" title="">SEMANA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('recepcionistas.pdf','mes') }}" title="">MES</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('recepcionistas.pdf','año') }}" title="">AÑO</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="{{ route('pacientes.pdf','todo') }}" title="PDF de pacientes">Pacientes</a>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a href="{{ route('pacientes.pdf','dia') }}" title="">DIA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('pacientes.pdf','semana') }}" title="">SEMANA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('pacientes.pdf','mes') }}" title="">MES</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('pacientes.pdf','año') }}" title="">AÑO</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="{{ route('usuarios.pdf','todo') }}" title="PDF de usuarios">Usuarios</a>
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <a href="{{ route('usuarios.pdf','dia') }}" title="">DIA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('usuarios.pdf','semana') }}" title="">SEMANA</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('usuarios.pdf','mes') }}" title="">MES</a>
+                      </li>
+                      <li class="list-group-item">
+                        <a href="{{ route('usuarios.pdf','año') }}" title="">AÑO</a>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
               <div class="col-md-6">
