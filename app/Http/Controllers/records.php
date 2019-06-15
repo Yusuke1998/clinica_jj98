@@ -51,14 +51,26 @@ class records extends Controller
             'patient_id'            =>  $request->patient_id,
             'dayDate'               =>  $request->dayDate,
         ]);
-        return back()->with('info','Expediente creado exitosamente!');
+        // return back()->with('info','Expediente creado exitosamente!');
+        return redirect(route('expedientes.ver',$expediente->patient_id));
+    }
+
+    public function nuevo(Request $request, $id)
+    {
+        $paciente = patient::find($id);
+        $etnias = ethnicGroup::all();
+        $sangres = bloodType::all();
+        $enfermedades = disease::all();
+        return view('sistema/expediente/create')
+        ->with('paciente',$paciente)
+        ->with('etnias',$etnias)
+        ->with('sangres',$sangres)
+        ->with('enfermedades',$enfermedades);
     }
 
     public function show($id)
     {
         $expediente = casefile::find($id);
-        // $evoluciones = evolution::where('casefile_id',$id)->first();
-        // $evoluciones = $expediente->evolutions;
         return view('sistema/expediente/show',compact('expediente'));
     }
 
