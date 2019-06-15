@@ -18,10 +18,7 @@
 		</div>
 		<div class="col-md-12 btn-group">
 			<a class="btn btn-info pull-right" href="{{route('evoluciones.edit',$evolucion->id)}}" title="Editar evolucion">Editar</a>
-
-			{{-- <a class="btn btn-info pull-right" href="{{route('evoluciones.nueva',$evolucion->casefile->id)}}" title="Nueva evolucion para {{ $evolucion->casefile->patient->firstname }} {{ $evolucion->casefile->patient->lastname }}">Agregar Evolucion al expediente</a> --}}
-
-			<a class="btn btn-success pull-right" href="#" title="Imprimir pdf">PDF</a>
+			<a class="btn btn-success pull-right" href="{{ route('expediente_evolucion.pdf',$evolucion->id) }}" title="Imprimir pdf">PDF</a>
 		</div>
 	</div>
 @stop

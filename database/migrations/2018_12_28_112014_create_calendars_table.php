@@ -10,8 +10,8 @@ class CreateCalendarsTable extends Migration
     {
         Schema::create('calendars', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('start');
+            $table->string('title')->nullable();
+            $table->string('start')->nullable();
             $table->string('end')->nullable();
             $table->string('color')->nullable();
             $table->string('url')->nullable();

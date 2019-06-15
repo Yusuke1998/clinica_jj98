@@ -68,9 +68,12 @@
       <div class="navbar navbar-dark bg-dark shadow-sm">
         <div class="container d-flex justify-content-between">
             <a href="{{ URL('/') }}" style="background-color: #fff; padding: 0px 10px; border-radius: 5%;" title="">
+              @if(App\config::first()->logo)
               <img src="{{ asset('img/logos').'/'.App\config::find(1)->logo }}" height="50" alt="{{ (App\config::find(1)->name)?App\config::find(1)->name:'Clinica' }}">
+              @else
+              <p class="h3">{{ App\config::find(1)->name }}</p>
+              @endif
             </a>
-            {{-- <a href="{{ URL('/') }}" class="navbar-brand d-flex align-items-center">CLINICA</a> --}}
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

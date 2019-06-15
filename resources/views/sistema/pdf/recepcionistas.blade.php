@@ -14,8 +14,6 @@
 				<th>Correo electronico</th>
 				<th>Usuario</th>
 				<th>Rol</th>
-				<th>Creado</th>
-				<th>Actualizado</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,8 +26,6 @@
 				<td>{{ $recepcionista->user->email }}</td>
 				<td>{{ $recepcionista->user->username }}</td>
 				<td>{{ $recepcionista->user->rol }}</td>
-				<td>{{ $recepcionista->created_at->format('d-m-Y') }}</td>
-				<td>{{ $recepcionista->updated_at->format('d-m-Y') }}</td>
 			</tr>
 			@endforeach
 		</tbody>

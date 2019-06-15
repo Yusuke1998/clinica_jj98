@@ -14,8 +14,6 @@
 				<th>Correo electronico</th>
 				<th>Usuario</th>
 				<th>Rol</th>
-				<th>Creado</th>
-				<th>Actualizado</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,8 +26,6 @@
 				<td>{{ $medico->user->email }}</td>
 				<td>{{ $medico->user->username }}</td>
 				<td>{{ $medico->user->rol }}</td>
-				<td>{{ $medico->created_at->format('d-m-Y') }}</td>
-				<td>{{ $medico->updated_at->format('d-m-Y') }}</td>
 			</tr>
 			@endforeach
 		</tbody>

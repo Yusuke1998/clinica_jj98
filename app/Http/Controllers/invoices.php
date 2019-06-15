@@ -42,7 +42,6 @@ class invoices extends Controller
         $configuracion = config::find(1);
         $pdf = PDF::loadView('sistema.pdf.factura', compact('factura','configuracion'))->setPaper('a6');
         return $pdf->stream();
-        // return $pdf->download('factura.pdf');
     }
 
     public function edit($id)

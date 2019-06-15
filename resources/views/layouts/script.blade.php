@@ -4,8 +4,6 @@
 <script  type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"></script>
 <script  type="text/javascript" src='{{asset('fullcalendar/lib/moment.min.js') }}'></script>
 <script  type="text/javascript" src="{{asset('chosen/chosen.jquery.js')}}"></script>
-
-{{-- <script  type="text/javascript" src='{{ asset('fullcalendar/lib/jquery.min.js') }}'></script> --}}
 <script  type="text/javascript" src='{{ asset('fullcalendar/fullcalendar.min.js') }}'></script>
 
 <!-- DATA TABLES -->

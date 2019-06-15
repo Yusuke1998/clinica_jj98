@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class appointment extends Model
 {
     protected $fillable = [
-        'patient_id','user_id','doctor_id','status'
+        'patient_id','user_id','doctor_id','status','date'
     ];
 
     public function calendar(){

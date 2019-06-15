@@ -37,7 +37,7 @@
 		</div>
 		<div class="col-md-12 btn-group">
 			<a class="btn btn-info pull-right" href="{{route('expedientes.edit',$expediente->id)}}" title="Editar expediente">Editar</a>
-			<a class="btn btn-success pull-right" href="#" title="Imprimir pdf">PDF</a>
+			<a class="btn btn-success pull-right" href="{{ route('expediente.pdf',$expediente->id) }}" title="Imprimir pdf">PDF</a>
 		</div>
 		<div class="col-md-12 text-center">
 			<p class="h3">Evoluciones del Paciente</p>
@@ -65,7 +65,12 @@
 					@endforeach
 				</tbody>
 			</table>
-			<a class="btn btn-info pull-right" href="{{route('evoluciones.nueva',$expediente->id)}}" title="Nueva evolucion">Agregar Evolucion</a>
+			<div class="col-md-12 btn-group">
+				@if($expediente->evolutions)
+					<a class="btn btn-success pull-right" href="{{ route('expediente_evoluciones.pdf',$expediente->id) }}" title="Imprimir pdf">TODAS LAS EVOLUCIONES PDF</a>
+				@endif
+				<a class="btn btn-info pull-right" href="{{route('evoluciones.nueva',$expediente->id)}}" title="Nueva evolucion">Agregar Evolucion</a>
+			</div>
 		</div>
 	</div>
 @stop

@@ -7,6 +7,7 @@
 
 	<div class="col-md-12 form-group">
       <label for="patient_id">Paciente</label>
+      @if(isset($pacientes))
       <select class="form-control my_select_box" id="patient_id" name="patient_id">
       	@forelse($pacientes as $paciente)
       		<option value="{{ $paciente->id }}">{{ $paciente->firstname }}&nbsp{{ $paciente->lastname }}</option>
@@ -14,6 +15,11 @@
       		<option>No hay pacientes registrados!</option>
       	@endforelse
       </select>
+      @elseif(isset($paciente))
+      <select class="form-control my_select_box" id="patient_id" name="patient_id">
+        <option selected value="{{ $paciente->id }}">{{ $paciente->firstname }}&nbsp{{ $paciente->lastname }}</option>
+      </select>
+      @endif
     </div>
 
     <div class="col-md-4 form-group">

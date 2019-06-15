@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+// Enfermedad
 class disease extends Model
 {
 	protected $table = 'diseases';

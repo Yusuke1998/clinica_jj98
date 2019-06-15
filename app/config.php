@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+// Configuracion
 class config extends Model
 {
     protected $fillable = [
