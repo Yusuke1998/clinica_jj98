@@ -8,6 +8,7 @@ use App\calendar;
 use App\doctor;
 use App\patient;
 use App\bill;
+use App\config;
 
 class quotes extends Controller
 {
@@ -33,10 +34,10 @@ class quotes extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $cita = new appointment();
         $calendario = new calendar();
         $factura = new bill();
+        $configuracion = config::find(1);
 
         $cita->user_id = $request->user_id;
         $cita->patient_id = $request->patient_id;
@@ -44,7 +45,14 @@ class quotes extends Controller
         $cita->status = 'Pendiente';
         $cita->save();
 
+        $iva = $configuracion->iva;
+        $subtotal = $request->amountPaylable;
+        $calculo = ($subtotal*$iva)/100;
+        $total = $subtotal+$calculo;
+        // dd($total);
+
         $factura->amountPaylable = $request->amountPaylable;
+        $factura->total = $total;
         $factura->code = 'CO'.time();
         $factura->appointment_id = $cita->id;
         $factura->user_id = \Auth::User()->id;
@@ -75,7 +83,6 @@ class quotes extends Controller
         $pacientes = patient::all();
         $medicos = doctor::all();
         $cita = appointment::find($id);
-        // dd($cita);
 
         return view('sistema.citas.edit')
             ->with('pacientes',$pacientes)
@@ -87,9 +94,15 @@ class quotes extends Controller
     {
         $calendario  = calendar::where('appointment_id',$id);
         $factura     = bill::where('appointment_id',$id);
+        $configuracion = config::find(1);
 
         $start = $request->start.'T'.$request->start_time_on;
         $end = $request->start.'T'.$request->start_time_off;
+
+        $iva = $configuracion->iva;
+        $subtotal = $request->amountPaylable;
+        $calculo = ($subtotal*$iva)/100;
+        $total = $subtotal+$calculo;
         
         // Se asigna el color dependiendo del estatus de la cita
         switch ($request->status) {
@@ -120,7 +133,7 @@ class quotes extends Controller
             'end'               =>  $end,
             'start_time_on'     =>  $request->start_time_on,
             'start_time_off'    =>  $request->start_time_off,
-            'date'              =>  $start,
+            'date'              =>  $request->start,
             'color'             =>  $color,
         ]);
 
@@ -132,13 +145,23 @@ class quotes extends Controller
         ]);
 
         $factura->update([
-            'amountPaylable' => $request->amountPaylable
+            'amountPaylable'    => $request->amountPaylable,
+            'total'             => $total,
         ]);
 
-        return back()->with('info','Cita actualizada con exito!');
+        $factura     = bill::where('appointment_id',$id)->get();
+        $factura_id = $factura[0]->id;
+
+        return redirect(Route('citas.show',$factura_id))->with('info','Cita actualizada con exito!');
     }
 
     public function destroy($id)
+    {
+        $cita = appointment::find($id)->delete();
+        return back()->with('info','Cita eliminada con exito!');
+    }
+
+    public function delete($id)
     {
         $cita = appointment::find($id)->delete();
         return back()->with('info','Cita eliminada con exito!');

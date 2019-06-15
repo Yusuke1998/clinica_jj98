@@ -104,4 +104,15 @@ class receptionists extends Controller
 
         return back()->with('info','Recepcionista eliminada con exito!');
     }
+
+    public function delete($id)
+    {
+        $recepcionista = receptionist::find($id);
+        $usuario = User::find($recepcionista->user_id);
+
+        $recepcionista->delete();
+        $usuario->delete();
+
+        return back()->with('info','Recepcionista eliminada con exito!');
+    }
 }

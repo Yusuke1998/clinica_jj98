@@ -16,7 +16,7 @@
 			@foreach($citas as $cita)
 				<tr>
 					<td>
-						{{ $cita->calendar->date}}
+						{{ date("d-m-Y", strtotime($cita->calendar->date)) }}
 					</td>
 					<td>
 						{{$cita->calendar->start_time_on}}
@@ -32,16 +32,18 @@
 						{{$cita->status}}
 					</td>
 					<td>
-						<div class="btn-group">
-							<a class="btn btn-info btn-sm" href="{{route('citas.show',$cita->id)}}">Ver</a>
-							<a class="btn btn-success btn-sm" href="{{route('citas.edit',$cita->id)}}">Editar</a>
-							
-							<form action="{{route('citas.destroy',$cita->id)}}" method="post">
-								@csrf
-								<input type="hidden" name="_method" value="DELETE">
-								<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-							</form>
-						</div>
+						<a title="Ver" href="{{route('citas.show',$cita->id)}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+
+						<a title="Editar" href="{{route('citas.edit',$cita->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+
+						<a title="Eliminar" href="{{route('citas.delete',$cita->id)}}" title=""><span class="glyphicon glyphicon-trash"></span></a>
+						
+						{{-- <form action="{{route('citas.destroy',$cita->id)}}" method="post">
+							@csrf
+							<input type="hidden" name="_method" value="DELETE">
+
+							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-danger btn-sm" type="submit"><span class="glyphicon glyphicon-trash"></span></button>
+						</form> --}}
 					</td>
 				</tr>
 			@endforeach

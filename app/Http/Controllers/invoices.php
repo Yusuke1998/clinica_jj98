@@ -1,6 +1,7 @@
 <?php
 // FACTURAS
 namespace App\Http\Controllers;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\bill;
 use App\config;
 use Illuminate\Http\Request;
@@ -33,6 +34,15 @@ class invoices extends Controller
         $factura = bill::find($id);
         $configuracion = config::find(1);
         return view('sistema.factura.show')->with(compact('factura','configuracion'));
+    }
+
+    public function pdf($id)
+    {
+        $factura = bill::find($id);
+        $configuracion = config::find(1);
+        $pdf = PDF::loadView('sistema.pdf.factura', compact('factura','configuracion'))->setPaper('a6');
+        return $pdf->stream();
+        // return $pdf->download('factura.pdf');
     }
 
     public function edit($id)

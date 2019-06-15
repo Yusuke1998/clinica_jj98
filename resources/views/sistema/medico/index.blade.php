@@ -20,16 +20,11 @@
 					<td>{{$medico->ci}}</td>
 					<td>{{($medico->created_at)?$medico->created_at->diffForHumans():'No hay registro...'}}</td>
 					<td>
-					<div class="btn-group">
-						<a class="btn btn-warning btn-sm" href="{{route('medicos.show',$medico->id)}}">Ver</a>
-						<a class="btn btn-success btn-sm" href="{{route('medicos.edit',$medico->id)}}">Editar</a>
-						
-						<form action="{{route('medicos.destroy',$medico->id)}}" method="post">
-							@csrf
-							<input type="hidden" name="_method" value="DELETE">
-							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-danger btn-sm" type="submit">Eliminar</button>
-						</form>
-					</div>
+					<a title="Ver" href="{{route('medicos.show',$medico->id)}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+
+					<a title="Editar" href="{{route('medicos.edit',$medico->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+
+					<a title="Eliminar" href="{{route('medicos.delete',$medico->id)}}" title=""><span class="glyphicon glyphicon-trash"></span></a>
 					</td>
 				</tr>
 			@endforeach

@@ -7,7 +7,7 @@
 
 	<div class="col-md-12 form-group">
       <label for="patient_id">Paciente</label>
-      <select class="form-control" id="patient_id" name="patient_id">
+      <select class="form-control my_select_box" id="patient_id" name="patient_id">
       	@forelse($pacientes as $paciente)
       		<option value="{{ $paciente->id }}">{{ $paciente->firstname }}&nbsp{{ $paciente->lastname }}</option>
       	@empty
@@ -38,7 +38,7 @@
     
     <div class="col-md-4 form-group">
       <label for="currentCondition">Enfermedad Actual</label>
-      <select class="form-control" id="currentCondition" name="currentCondition_id">
+      <select class="form-control my_select_box" id="currentCondition" name="currentCondition_id">
         @forelse($enfermedades as $enfermedad)
           <option value="{{ $enfermedad->id }}">{{ $enfermedad->name }}</option>
         @empty
@@ -49,7 +49,7 @@
 
     <div class="col-md-4 form-group">
       <label for="inheritedDisease_id">Enfermedad Heredada</label>
-      <select class="form-control" id="inheritedDisease_id" name="inheritedDisease_id">
+      <select class="form-control my_select_box" id="inheritedDisease_id" name="inheritedDisease_id">
           <option selected value="">Ninguna</option>
         @forelse($enfermedades as $enfermedad)
           <option value="{{ $enfermedad->id }}">{{ $enfermedad->name }}</option>
@@ -61,7 +61,7 @@
 
     <div class="col-md-4 form-group">
       <label for="ethnicGroup">Grupo Etnico</label>
-      <select class="form-control" id="ethnicGroup" name="ethnic_group_id">
+      <select class="form-control my_select_box" id="ethnicGroup" name="ethnic_group_id">
           <option selected value="">Ninguno</option>
         @forelse($etnias as $etnia)
           <option value="{{ $etnia->id }}">{{ $etnia->name }}</option>

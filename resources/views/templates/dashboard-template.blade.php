@@ -37,21 +37,22 @@
         <hr>
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
           <h5>Reportes <i class="glyphicon glyphicon-chevron-down"></i></h5>
-          </a>
-            <ul class="list-unstyled collapse" id="menu2">
-                <li><a title="Facturas emitidas" data-toggle="modal" href="#FacturasModal"><span class="glyphicon glyphicon-euro"></span> Facturas</a></li>
-            </ul>
+          </a>       
           @if(Auth::user()->rol=="admin")
             <ul class="list-unstyled collapse" id="menu2">
                 <li><a title="Reporte general del sistema" data-toggle="modal" href="#GeneralModal"><span class="glyphicon glyphicon-plus"></span> General</a></li>
             </ul>
           @endif
+
+          
         </li>
       </ul> 
       <hr>    
     </div>
     <!-- /col-3 -->
     <div class="col-md-9">
+      @include('layouts.status')
+
       @yield('content-dashboard')
     </div>
       <div class="modal" id="UsuariosModal">
@@ -159,7 +160,6 @@
                   <li><a href="{{ Route('expedientes.create') }}" title="Crear expediente">Nuevo Expediente</a></li>
                   <li><a href="{{ Route('evoluciones.index') }}" title="Lista de evoluciones">Evoluciones</a></li>
                   <li><a href="{{ Route('evoluciones.create') }}" title="Crear evolucion">Nueva Evolucion de paciente</a></li>
-                  <li><a href="{{ Route('citas.create') }}" title="Crear cita">Nueva Cita</a></li>
                 </ul>
               </div>
               <div class="col-md-6">
@@ -184,11 +184,20 @@
               <h4 class="modal-title">Opciones para citas</h4>
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
             </div>
-            <div class="modal-body">
-              <ul>
-                <li><a href="{{ Route('citas.index') }}" title="Todas las citas">Lista de Citas</a></li>
-                <li><a href="{{ Route('citas.create') }}" title="Nueva cita">Nueva Cita</a></li>
-              </ul>
+            <div class="modal-body row">
+              <div class="col-md-6">
+                <ul>
+                  <li><a href="{{ Route('citas.index') }}" title="Todas las citas">Lista de Citas</a></li>
+                  <li><a href="{{ Route('citas.create') }}" title="Nueva cita">Nueva Cita</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-body">
+                    <center><img src="{{ asset('img/calendario.png') }}" width="100px"></center>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="modal-footer">
               <a href="#" data-dismiss="modal" class="btn">Cerrar</a>
@@ -241,7 +250,7 @@
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-body">
-                    <center><img src="{{ asset('img/facturas.png') }}" width="100px"></center>
+                    <center><img src="{{ asset('img/remision.png') }}" width="100px"></center>
                   </div>
                 </div>
               </div>
@@ -263,13 +272,17 @@
             <div class="modal-body row">
               <div class="col-md-6">
                 <ul>
-                  <li><a href="#" title="Estado de ingresos">Grafica de ingresos</a></li>
+                  <li><a href="#" title="PDF de ingresos">Ingresos</a></li>
+                  <li><a href="#" title="PDF de citas">Citas</a></li>
+                  <li><a href="#" title="PDF de pacientes">Pacientes</a></li>
+                  <li><a href="#" title="PDF de doctores">Doctores</a></li>
+                  <li><a href="#" title="PDF de recepcionistas">Recepcionistas</a></li>
                 </ul>
               </div>
               <div class="col-md-6">
                 <div class="card">
                   <div class="card-body">
-                    <center><img src="{{ asset('img/reportes.png') }}" width="100px"></center>
+                    <center><img src="{{ asset('img/generalreporte.png') }}" width="100px"></center>
                   </div>
                 </div>
               </div>

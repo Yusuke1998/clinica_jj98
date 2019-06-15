@@ -12,7 +12,7 @@
 
     <div class="col-md-6 form-group">
       <label for="amountPaylable">Monto en Bs.S</label>
-      <input type="text" class="form-control" id="amountPaylable" name="amountPaylable" placeholder="Monto pagado">
+      <input type="text" class="form-control" id="amountPaylable" name="amountPaylable" placeholder="Monto a pagar">
     </div>
 
     <div class="col-md-4 form-group">

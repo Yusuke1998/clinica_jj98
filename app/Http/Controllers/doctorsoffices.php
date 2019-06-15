@@ -30,7 +30,7 @@ class doctorsoffices extends Controller
             'location'   =>  $request->location
         ]);
 
-        return back()->with('info','Consultorio registrado econ exito!');
+        return redirect(Route('consultorios.index'))->with('info','Consultorio registrado econ exito!');
     }
 
     public function show($id)
@@ -51,6 +51,6 @@ class doctorsoffices extends Controller
     public function destroy($id)
     {
         $consultorio = consultingroom::find($id)->delete();
-        return back()->with('info','Consultorio eliminada con exito!');
+        return redirect(Route('medicos.index'))->with('info','Consultorio eliminada con exito!');
     }
 }

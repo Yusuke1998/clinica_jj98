@@ -48,6 +48,16 @@
 		/ {{$paciente->address2}}
 		@endif
 	</div>
+
+	@if($paciente->casefile)
+		<div class="col-md-12">
+			<a class="btn btn-info pull-right" href="{{route('expedientes.ver',$paciente->id)}}" title="Expediente">Ver expediente</a>
+		</div>
+	@else
+		<div class="col-md-12">
+			<a class="btn btn-info pull-right" href="{{route('expedientes.nuevo',$paciente->id)}}" title="Expediente">Crear expediente</a>
+		</div>
+	@endif
 </div>
 </div>
 @endsection

@@ -1,5 +1,4 @@
 @extends('templates/dashboard-template')
-@endsection
 @section('content-dashboard')
 	<form action="{{route('evoluciones.store')}}" method="POST">
 	  @csrf
@@ -22,7 +21,7 @@
 	    
 	    <div class="col-md-12 form-group">
 	      <label for="disease_id">Enfermedad Actual</label>
-	      <select class="form-control" id="disease_id" name="disease_id">
+	      <select class="form-control my_select_box" id="disease_id" name="disease_id">
 	        @forelse($enfermedades as $enfermedad)
 	          <option value="{{ $enfermedad->id }}">{{ $enfermedad->name }}</option>
 	        @empty

@@ -19,14 +19,15 @@
 					<td>{{$usuario->rol}}</td>
 					<td>{{($usuario->created_at)?$usuario->created_at->diffForHumans():'No hay registro...'}}</td>
 					<td>
-					<div class="btn-group">
-						<a class="btn btn-primary btn-sm" href="{{route('usuarios.edit',$usuario->id)}}">Editar</a>
+						<a title="Editar" href="{{route('usuarios.edit',$usuario->id)}}"><span class="glyphicon glyphicon-edit"></span></a>
+
+						<a title="Eliminar" href="{{route('usuarios.delete',$usuario->id)}}" title=""><span class="glyphicon glyphicon-trash"></span></a>
 						
-						<form action="{{route('usuarios.destroy',$usuario->id)}}" method="post">
+						{{-- <form action="{{route('usuarios.destroy',$usuario->id)}}" method="post">
 							@csrf
 							<input type="hidden" name="_method" value="DELETE">
 							<button onclick="return confirm('Seguro de eliminar?')" class="btn btn-primary btn-sm" type="submit">Eliminar</button>
-						</form>
+						</form> --}}
 					</div>
 					</td>
 				</tr>
