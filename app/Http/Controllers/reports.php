@@ -10,6 +10,8 @@ use App\patient;
 use App\receptionist;
 use App\appointment;
 use App\evolution;
+use App\bill;
+use App\calendar;
 
 class reports extends Controller
 {
@@ -124,32 +126,32 @@ class reports extends Controller
     public function recepcionistas($tipo){
         switch ($tipo) {
             case 'todo':
-            $title = ['Reporte de tadas las recepcionistas en el sistema','sistema','recepcionistas'];
+            $title = ['Reporte de todas las recepcionistas en el sistema','sistema','recepcionistas'];
             $recepcionistas = receptionist::all();
                 break;
             case 'dia':
-            $title = ['Reporte de tadas las recepcionistas del dia','sistema','dia'];
+            $title = ['Reporte de todas las recepcionistas del dia','sistema','dia'];
             $fecha = Carbon::now()->format('Y-m-d');
             $recepcionistas = receptionist::wherecreated_at('created_at', '=', $fecha)->get();
                 break;
             case 'semana':
-            $title = ['Reporte de tadas las recepcionistas de la semana','sistema','semana'];
+            $title = ['Reporte de todas las recepcionistas de la semana','sistema','semana'];
             $InicioSemana = Carbon::now()->startOfWeek();
             $FinSemana = Carbon::now()->endOfWeek();
             $recepcionistas = receptionist::whereBetween('created_at', [$InicioSemana,$FinSemana])->get();
                 break;
             case 'mes':
-            $title = ['Reporte de tadas las recepcionistas del mes','sistema','mes'];
+            $title = ['Reporte de todas las recepcionistas del mes','sistema','mes'];
             $fecha = Carbon::now()->format('m');
             $recepcionistas = receptionist::whereMonth('created_at','=',$fecha)->get();
                 break;
             case 'año':
-            $title = ['Reporte de tadas las recepcionistas del año','sistema','año'];
+            $title = ['Reporte de todas las recepcionistas del año','sistema','año'];
             $fecha = Carbon::now()->format('Y');
             $recepcionistas = receptionist::whereYear('created_at','=',$fecha)->get();
                 break;
             default:
-            $title = ['Reporte de tadas las recepcionistas en el sistema','sistema','recepcionistas'];
+            $title = ['Reporte de todas las recepcionistas en el sistema','sistema','recepcionistas'];
             $recepcionistas = receptionist::all();
                 break;
         }
@@ -160,36 +162,85 @@ class reports extends Controller
     public function citas($tipo){
         switch ($tipo) {
             case 'todo':
-            $title = ['Reporte de tadas las citas en el sistema','sistema','citas'];
+            $title = ['Reporte de todas las citas en el sistema','sistema','citas'];
             $citas = appointment::all();
                 break;
             case 'dia':
-            $title = ['Reporte de tadas las citas del dia','sistema','dia'];
+            $title = ['Reporte de todas las citas del dia','sistema','dia'];
             $fecha = Carbon::now()->format('Y-m-d');
             $citas = appointment::wherecreated_at('created_at', '=', $fecha)->get();
                 break;
             case 'semana':
-            $title = ['Reporte de tadas las citas de la semana','sistema','semana'];
+            $title = ['Reporte de todas las citas de la semana','sistema','semana'];
             $InicioSemana = Carbon::now()->startOfWeek();
             $FinSemana = Carbon::now()->endOfWeek();
             $citas = appointment::whereBetween('created_at', [$InicioSemana,$FinSemana])->get();
                 break;
             case 'mes':
-            $title = ['Reporte de tadas las citas del mes','sistema','mes'];
+            $title = ['Reporte de todas las citas del mes','sistema','mes'];
             $fecha = Carbon::now()->format('m');
             $citas = appointment::whereMonth('created_at','=',$fecha)->get();
                 break;
             case 'año':
-            $title = ['Reporte de tadas las citas del año','sistema','año'];
+            $title = ['Reporte de todas las citas del año','sistema','año'];
             $fecha = Carbon::now()->format('Y');
             $citas = appointment::whereYear('created_at','=',$fecha)->get();
                 break;
             default:
-            $title = ['Reporte de tadas las citas en el sistema','sistema','citas'];
+            $title = ['Reporte de todas las citas en el sistema','sistema','citas'];
             $citas = appointment::all();
                 break;
         }
         $pdf = PDF::loadView('sistema.pdf.citas', compact('citas','title'));
+        return $pdf->stream('reporte_'.$title[1].'_'.$title[2].'.pdf');
+    }
+
+    public function ingresos($tipo){
+        switch ($tipo) {
+            case 'todo':
+            $title = ['Reporte de todos los ingresos en el sistema','sistema','ingresos'];
+            $ingresos = bill::all();
+            // $ingresos = calendar::all();
+                break;
+            case 'dia':
+            $title = ['Reporte de todos los ingresos del dia','sistema','dia'];
+            $fecha = Carbon::now()->format('Y-m-d');
+            // $ingresos = calendar::wherecreated_at('date', '=', $fecha)->get();
+            $ingresos =  bill::wherecreated_at('date', '=', $fecha)->get();
+                break;
+            case 'semana':
+            $title = ['Reporte de todos los ingresos de la semana','sistema','semana'];
+            $InicioSemana = Carbon::now()->startOfWeek();
+            $FinSemana = Carbon::now()->endOfWeek();
+            // $ingresos = calendar::whereBetween('date', [$InicioSemana,$FinSemana])->get();
+            $ingresos = bill::whereBetween('date', [$InicioSemana,$FinSemana])->get();
+                break;
+            case 'mes':
+            $title = ['Reporte de todos los ingresos del mes','sistema','mes'];
+            $fecha = Carbon::now()->format('m');
+            $ingresos = bill::whereMonth('date','=',$fecha)->get();
+            // $ingresos = calendar::whereMonth('date', '=',$fecha)->get();
+                break;
+            case 'año':
+            $title = ['Reporte de todos los ingresos del año','sistema','año'];
+            $fecha = Carbon::now()->format('Y');
+            $ingresos = bill::whereYear('date','=',$fecha)->get();
+            // $ingresos = calendar::whereYear('date', '=',$fecha)->get();
+                break;
+            default:
+            $title = ['Reporte de todos los ingresos en el sistema','sistema','ingresos'];
+            $ingresos = bill::all();
+            // $ingresos = calendar::all();
+                break;
+        }
+        $pdf = PDF::loadView('sistema.pdf.ingresos', compact('ingresos','title'));
+        return $pdf->stream('reporte_'.$title[1].'_'.$title[2].'.pdf');
+    }
+
+    public function medico_pacientes($id){
+        $medico = doctor::find($id);
+        $title = ['Reporte de todos los pacientes del doctor:','sistema','pacientes'];
+        $pdf = PDF::loadView('sistema.pdf.medico_pacientes', compact('medico','title'));
         return $pdf->stream('reporte_'.$title[1].'_'.$title[2].'.pdf');
     }
 }

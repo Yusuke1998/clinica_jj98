@@ -43,17 +43,18 @@ class quotes extends Controller
         $cita->patient_id = $request->patient_id;
         $cita->doctor_id = $request->doctor_id;
         $cita->status = 'Pendiente';
+        $cita->date = $request->start;
         $cita->save();
 
         $iva = $configuracion->iva;
         $subtotal = $request->amountPaylable;
         $calculo = ($subtotal*$iva)/100;
         $total = $subtotal+$calculo;
-        // dd($total);
 
         $factura->amountPaylable = $request->amountPaylable;
         $factura->total = $total;
-        $factura->code = 'CO'.time();
+        $factura->code = 'COD'.time();
+        $factura->date = $request->start;
         $factura->appointment_id = $cita->id;
         $factura->user_id = \Auth::User()->id;
         $factura->save();
@@ -68,6 +69,7 @@ class quotes extends Controller
         $calendario->date = $request->start;
         $calendario->appointment_id = $cita->id;
         $calendario->save();
+
 
         return redirect(Route('facturas.show',$factura->id))->with('info','Cita creada con exito!');
     }

@@ -13,6 +13,7 @@ class CreateBillsTable extends Migration
             $table->string('code')->unique();
             $table->integer('amountPaylable');
             $table->float('total')->nullable();
+            $table->date('date')->nullable();
             $table->integer('appointment_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('appointment_id')->references('id')->on('appointments')->onDelete('cascade');

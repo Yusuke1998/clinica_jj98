@@ -76,6 +76,8 @@ Route::group([ 'middleware' => ['auth'], 'prefix' => 'sistema'],function(){
 		Route::get('medicos/{tipo}','reports@medicos')->name('medicos.pdf');
 		Route::get('recepcionistas/{tipo}','reports@recepcionistas')->name('recepcionistas.pdf');
 		Route::get('citas/{tipo}','reports@citas')->name('citas.pdf');
+		Route::get('ingresos/{tipo}','reports@ingresos')->name('ingresos.pdf');
+		Route::get('medico/{id}/pacientes','reports@medico_pacientes')->name('medico_pacientes.pdf');
 	});
 
 });

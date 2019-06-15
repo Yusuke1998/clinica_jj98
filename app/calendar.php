@@ -3,9 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\calendar;
-use App\appointment;
-
+// Calendario
 class calendar extends Model
 {
     protected $fillable = [
