@@ -39,6 +39,7 @@ class quotes extends Controller
         $factura = new bill();
         $configuracion = config::find(1);
 
+
         $cita->user_id = $request->user_id;
         $cita->patient_id = $request->patient_id;
         $cita->doctor_id = $request->doctor_id;
@@ -58,6 +59,9 @@ class quotes extends Controller
         $factura->appointment_id = $cita->id;
         $factura->user_id = \Auth::User()->id;
         $factura->save();
+
+        $medico = doctor::find($request->doctor_id);
+        $medico->patients()->attach($request->patient_id);
 
         $calendario->title = $request->title;
         $calendario->start = $request->start.'T'.$request->start_time_on;
